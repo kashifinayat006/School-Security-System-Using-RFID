@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="editstudent.css">
+    <link rel="stylesheet" href="editteacher.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/spin.js@2.3.2/spin.min.js"></script>
+    <link rel="stylesheet" href="phpcode/styles2.css">
+
+</head>
+
+<body>
+ 
+    <div class="tick" id="tick">
+        <div class="tick-mark">&#10004;</div>
+        <p style="display: contents;" class="success-message">Card Scanned Successfully</p>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="popup">
+        <button class="close-button" id="closePopup">&times;</button>
+        <div class="card">
+            <div class="scan-line"></div>
+            <div class="card-details">
+                <h1>Card Scanning</h1>
+                <p style="display: contents;">Place your card on the scanner</p>
+
+            </div>
+        </div>
+    </div>
+    <script src="validationEditPage.js"> </script>
+    <div class="form-container">
+        <div class="form-group" style="display: none;">
+           <div class="previousID">
+            <label for="enterID" style="color: white;">Previous ID</label>
+        </div>
+            <p id="enterID" style="
+            border-radius: 10px;
+            font-size: 16px;
+            background: linear-gradient(to right, #ff9900, #ff5722);
+            color: white;
+            text-align: center;
+            width: 500px;
+            height: 27px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -5px;
+            border: 2px solid #ff5722;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);">--</p><br>
+   
+            <button id="openPopup" class="openPopup">Change ID <span class="fa fa-pencil"></span></button>
+        </div>
+        
+
+        <div class="form-group">
+            <label for="updateFirstName">Previous First Name:
+                <div class="label-with-icon tooltip">
+                    <span class="fa fa-info-circle"></span> 
+                    <span class="tooltiptext">Enter new first name</span>
+                    </div>
+            </label>
+            <input id="updateFirstName" type="text" oninput="validateInput('updateFirstName')">
+            <p id="updateFirstName-error" style="color: red;"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="updateLastName">Previous Last Name:
+                <div class="label-with-icon tooltip">
+                    <span class="fa fa-info-circle"></span> 
+                    <span class="tooltiptext">Enter new Last name to update</span>
+                    </div>
+            </label>
+            <input id="updateLastName" type="text" oninput="validateInput('updateLastName')" >
+            <p id="updateLastName-error" style="color: red;"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="updateFatherName">Previous Father Name:
+                <div class="label-with-icon tooltip">
+                    <span class="fa fa-info-circle"></span> 
+                    <span class="tooltiptext">Enter new father name to update</span>
+                    </div>
+            </label>
+            <input id="updateFatherName" type="text" oninput="validateInput('updateFatherName')" >
+            <p id="updateFatherName-error" style="color: red;"></p>
+
+        </div>
+
+        
+        <div class="form-group">
+            <label for="updateFatherCNIC">Previous Father CNIC:
+                <div class="label-with-icon tooltip">
+                    <span class="fa fa-info-circle"></span> 
+                    <span class="tooltiptext">Enter new father CNIC to update</span>
+                    </div>
+            </label>
+            <input id="updateFatherCNIC" type="text" disabled>
+        </div>
+
+      
+        <div class="form-group">
+            <label for="updateClassName">Previous Class Name:
+                <div class="label-with-icon tooltip">
+                    <span class="fa fa-info-circle"></span> 
+                    <span class="tooltiptext">You can assign a new class to a student if you desire.</span>
+                    </div>
+            </label>
+            <select id="updateClassName">
+                <option value="0">Class 0</option>
+                <option value="1">Class 1</option>
+                <option value="2">Class 2</option>
+                <option value="3">Class 3</option>
+                <option value="4">Class 4</option>
+                <option value="5">Class 5</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="newGender">New Gender:
+                <div class="label-with-icon tooltip">
+                    <span class="fa fa-info-circle"></span> 
+                    <span class="tooltiptext">Choose a new gender if you have previously selected the incorrect one.</span>
+                    </div>
+            </label>
+            <select id="newGender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <button id="update" class="update-button">UPDATE</button>
+    </div>
+
+    <script type="module" src="phpcode/script2.js"> </script>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCXvbE44rMmYlkSLMIsramC6tiBcLBNH4",
+    authDomain: "schoolsecuritysystemusin-4c8fa.firebaseapp.com",
+    databaseURL: "https://schoolsecuritysystemusin-4c8fa-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "schoolsecuritysystemusin-4c8fa",
+    storageBucket: "schoolsecuritysystemusin-4c8fa.appspot.com",
+    messagingSenderId: "58102931592",
+    appId: "1:58102931592:web:8b2a5aee4664b3df023f3d",
+    measurementId: "G-KTK6CHM7EF"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+        const db = getDatabase();
+
+        const updateBtn = document.querySelector("#update");
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const queryParams = new URLSearchParams(window.location.search);
+            const editID = document.getElementById("enterID");
+            const editFirstName = document.getElementById("updateFirstName");
+            const editLastName = document.getElementById("updateLastName");
+            const editFatherName = document.getElementById("updateFatherName");
+            const updateGenderTextbox = document.getElementById("updateGender");
+            const enterID = document.querySelector("#enterID");
+            const editClass = document.getElementById("updateClassName");
+            var editGender = document.getElementById("newGender");
+            const editFatherCNIC = document.getElementById("updateFatherCNIC");
+  
+  const previousClass = queryParams.get("className");
+    editClass.value = previousClass;
+
+   
+
+
+            editID.innerHTML = queryParams.get("id");
+            editFirstName.value = queryParams.get("firstName");
+            editLastName.value = queryParams.get("lastName");
+            editFatherName.value = queryParams.get("fatherName");
+            editClass.value = queryParams.get("className");
+            editGender.value = queryParams.get("gender");
+            editFatherCNIC.value = queryParams.get('cnic')
+
+            const updateBtn = document.querySelector("#update");
+
+            function UpdateData() {
+                var cnic =  editFatherCNIC.value;
+                var newID = parseInt(editID.textContent);;
+                var newFirstName = editFirstName.value;
+                var newLastName = editLastName.value;
+                var newFatherName = editFatherName.value;
+                var newGender = editGender.value;
+                var newClass = editClass.value;
+                var previousClass = queryParams.get("className");
+                var previousID = queryParams.get("id");
+                const newIDValue = parseInt(enterID.textContent);
+              
+
+                set(ref(db, "StudentData/"+cnic+"/"+newID), {
+                    firstname: newFirstName,
+                    lastname: newLastName,
+                    ID: newID,
+                    fName: newFatherName,
+                    cName: newClass,
+                    gen: newGender,
+                    cnic : cnic,
+
+                })
+                set(ref(db, "ClassRoom/" + newClass + "/Students/" + newID),
+                    {
+                        ID: newID,
+                        firstName: newFirstName,
+                        lastName: newLastName,
+                        cnic : cnic,
+                    })
+                set(ref(db, "allowed-card-ids/" + newID), "allowed")
+                    .then(() => {
+                        alert("Data added successfully");
+                        window.location.href = "StudentRecord.html";
+                    })
+                    .catch((error) => {
+                        alert(error);
+                    });
+
+                if (previousClass != newClass) {
+                    remove(ref(db, "ClassRoom/" + previousClass + "/Students/"+ previousID ))
+                }
+                if (previousID != newID) {
+                    remove(ref(db, "ClassRoom/"+ previousClass+"/Students/"+ previousID))
+                    remove(ref(db, "allowed-card-ids/" + previousID))
+                    remove(ref(db, "StudentData/" +cnic+"/"+ previousID))
+                }
+            }
+
+            updateBtn.addEventListener("click", UpdateData);
+        });
+
+
+    </script>
+</body>
+
+</html>

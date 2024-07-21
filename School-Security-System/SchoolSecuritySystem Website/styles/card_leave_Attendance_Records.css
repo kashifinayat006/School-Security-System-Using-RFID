@@ -1,0 +1,238 @@
+/* Styling for action buttons */
+.action-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4mm;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .action-button.edit {
+    background-color: green;
+    color: white;
+    margin-right: 5px;
+    }
+    
+    .delete-button {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4mm;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .action-button.edit:hover {
+    background-color: darkgreen;
+    transform: translateY(-2px);
+    box-shadow: 3px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    
+    .delete-button:hover {
+    background-color: darkred;
+    
+    transform: translateY(-2px);
+    box-shadow: 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #reject-button{
+       background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4mm;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+    }
+    #reject-button:hover{
+      background-color: darkred;
+    
+      transform: translateY(-2px);
+      box-shadow: 3px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    
+    /* Disable the default link styles */
+    a.edit-button {
+    text-decoration: none;
+    }
+    /* styling for displaying a if no result in filter */
+    .class-heading.no-records {
+    color: red;
+    }
+    #noRecordsMessage {
+      text-align: center;
+      color: red;
+      font-size: 18px;
+      margin-top: 20px; /* Adjust the margin to your preference */
+    }
+    table {
+        width: 98%;
+        margin: 0 auto; 
+        border-collapse: collapse;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+              table th,
+              table td {
+                padding: 12px 15px;
+                text-align: center;
+                transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+              }
+      
+              table th {
+                background-color: #0A2558;
+                color: #fff;
+              }
+      
+              table tbody tr:nth-child(odd) {
+                background-color: #f2f2f2;
+              }
+      
+              /* Hover effect for table rows */
+              table tbody tr:hover {
+                background-color: #FFFAF0;
+                cursor: pointer;
+                
+                transform: scale(1); /* Scale the element slightly */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Add a softer box-shadow */
+        font-weight: bold;
+              }
+              
+              /* filtercontainer of teacher new card request */
+              .filter-container {
+                display: flex;
+                align-items: center;
+              
+                padding: 2px;
+                border-radius: 40px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+                max-width: 300px;
+              }
+              
+              /* Style the label */
+              label {
+                font-weight: bold;
+                margin-right: 10px;
+              }
+              
+              /* Style the select element */
+              select {
+                padding: 6px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                width: 190px;
+                /* Set a suitable width */
+              }
+              
+              /* Style the filter button */
+              button#applyFilter {
+                height: 34px;
+                width: 93px;
+                padding: 0px 10px; /* Reduced padding */
+                background-color: #0A2558;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.9s ease, transform 0.9s ease; /* Added transition here */
+                transform: translateY(0); /* Initial state */
+                font-size: 14px; /* Reduced font size */
+              }
+              
+              button#applyFilter:hover {
+                background-color: #550A35;
+              
+                transform: scale(1.05);
+                box-shadow: 10px 10px rgba(0, 0, 0, 0.1);
+              }
+    /* Attendance */
+    .filter-container {
+      display: flex;
+      align-items: center;
+
+      padding: 4px;
+      border-radius: 40px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      max-width: 350px;
+    }
+
+    #Filter {
+      height: 34px;
+      width: 90px;
+      padding: 0px 10px;
+      /* Reduced padding */
+      background-color: #0A2558;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.9s ease, transform 0.9s ease;
+      /* Added transition here */
+      transform: translateY(0);
+      /* Initial state */
+      font-size: 14px;
+      /* Reduced font size */
+    }
+
+    button#Filter:hover {
+      background-color: #550A35;
+
+      transform: scale(1.05);
+      box-shadow: 10px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      position: relative;
+    }
+
+    #seeAllButtonContainer {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    #seeAllButton {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.9s ease, transform 0.9s ease;
+      font-size: 14px;
+    }
+
+    #seeAllButton:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+      box-shadow: 10px 10px rgba(0, 0, 0, 0.1);
+    }
+    /* Style the filter button */
+button#filterButton {
+height: 34px;
+width: 93px;
+padding: 0px 10px; /* Reduced padding */
+background-color: #0A2558;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.9s ease, transform 0.9s ease; /* Added transition here */
+transform: translateY(0); /* Initial state */
+font-size: 14px; /* Reduced font size */
+}
+
+button#filterButton:hover {
+background-color: #550A35;
+
+transform: scale(1.05);
+box-shadow: 10px 10px rgba(0, 0, 0, 0.1);
+}

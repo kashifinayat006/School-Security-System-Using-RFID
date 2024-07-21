@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="editstudent.css">
+    <link rel="stylesheet" href="editteacher.css">
+    <script src="https://cdn.jsdelivr.net/npm/spin.js@2.3.2/spin.min.js"></script>
+    <link rel="stylesheet" href="phpcode/styles2.css">
+    <style>
+    </style>
+</head>
+<body>
+    <div class="tick" id="tick">
+        <div class="tick-mark">&#10004;</div>
+        <p style="display: contents;" class="success-message">Card Scanned Successfully</p>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <button class="close-button" id="closePopup">&times;</button>
+        <div class="card">
+            <div class="scan-line"></div>
+            <div class="card-details">
+                <h1>Card Scanning</h1>
+                <p style="display: contents;">Place your card on the scanner</p>
+            </div>
+        </div>
+    </div>
+    <!-- ////////////////// -->
+    <div class="form-container">
+        <div class="form-group">
+            <label for="enterID">Previous ID</label>
+            <p id="enterID" style="
+            border-radius: 10px;
+            font-size: 16px;
+            background: linear-gradient(to right, #ff9900, #ff5722);
+            color: white;
+            text-align: center;
+            width: 500px;
+            height: 27px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            border: 2px solid #ff5722;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);">--</p>
+            <button id="openPopup" class="openPopup">Change ID <span class="fa fa-pencil"></span></button>
+        </div>
+        <br>
+        <button id="update" class="update-button">UPDATE</button>
+    </div>
+
+    <script type="module" src="phpcode/script2.js"> </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCXvbE44rMmYlkSLMIsramC6tiBcLBNH4",
+            authDomain: "schoolsecuritysystemusin-4c8fa.firebaseapp.com",
+            databaseURL: "https://schoolsecuritysystemusin-4c8fa-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "schoolsecuritysystemusin-4c8fa",
+            storageBucket: "schoolsecuritysystemusin-4c8fa.appspot.com",
+            messagingSenderId: "58102931592",
+            appId: "1:58102931592:web:8b2a5aee4664b3df023f3d",
+            measurementId: "G-KTK6CHM7EF"
+        };
+        import { getAuth, signInWithEmailAndPassword, deleteUser as deleteUserAccount, updateEmail, updatePassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        import { getDatabase, ref, get, set, remove, update } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+        const db = getDatabase();
+        const updateBtn = document.querySelector("#update");
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const queryParams = new URLSearchParams(window.location.search);
+
+            const editID = document.getElementById("enterID");
+            editID.innerHTML = queryParams.get("id");
+
+            const updateBtn = document.querySelector("#update");
+            // Function to get the id from url and call other two functions when update button is clicked
+            function UpdateData() {
+                console.log("UpdateData function called");
+
+                const newID = parseInt(editID.textContent);
+                const previousID = queryParams.get("id");
+
+                updateCardId(newID, previousID);
+                updateClassRoomId(newID, previousID)
+            }
+            // function to update the card id
+            function updateCardId(newID, previousID) {
+                const NewCardRequestRef = ref(db, `TeacherData/${previousID}`);
+                const allowedCardIdsRef = ref(db, 'allowed-card-ids');
+
+                // First, remove the previous ID from allowed-card-ids
+                const removePreviousID = {};
+                removePreviousID[previousID] = null;
+
+                update(allowedCardIdsRef, removePreviousID)
+                    .then(() => {
+                        // Retrieve the existing data from TeacherData node
+                        get(NewCardRequestRef)
+                            .then((snapshot) => {
+                                if (snapshot.exists()) {
+                                    const existingData = snapshot.val();
+
+                                    // Update the ID field in the parent node
+                                    const parentRef = ref(db, 'TeacherData');
+                                    const parentUpdates = {};
+                                    parentUpdates[previousID] = null; // Remove the existing data in the parent node
+                                    parentUpdates[newID] = existingData; // Add the updated data in the parent node
+
+                                    // Update the ID field in the child node
+                                    const childRef = ref(db, `TeacherData/${newID}`);
+
+                                    // Use update to perform both removal and addition in the parent node
+                                    update(parentRef, parentUpdates)
+                                        .then(() => {
+                                            // Update the ID field in the child node
+                                            const childUpdates = {
+                                                ID: newID,
+                                            };
+
+                                            // Use update to modify specific properties in the child node
+                                            update(childRef, childUpdates)
+                                                .then(() => {
+                                                    // Update the ID field in allowed-card-ids
+                                                    const allowedCardIdsUpdates = {};
+                                                    allowedCardIdsUpdates[newID] = 'allowed';
+
+                                                    update(allowedCardIdsRef, allowedCardIdsUpdates)
+                                                        .then(() => {
+                                                            alert("New Card assigned successfully.");
+                                                            // You can add additional code to handle the updated status here
+                                                        })
+                                                        .catch((error) => {
+                                                            console.error("Error updating allowed-card-ids:", error);
+                                                            alert("Error updating allowed-card-ids: " + error);
+                                                        });
+                                                })
+                                                .catch((error) => {
+                                                    console.error("Error updating child node:", error);
+                                                    alert("Error updating child node: " + error);
+                                                });
+                                        })
+                                        .catch((error) => {
+                                            console.error("Error updating New Card request status:", error);
+                                            alert("Error updating Card request status: " + error);
+                                        });
+                                } else {
+                                    console.error("Record not found.");
+                                    alert("Record not found.");
+                                }
+                            })
+                            .catch((error) => {
+                                console.error("Error retrieving data:", error);
+                                alert("Error retrieving data: " + error);
+                            });
+                    })
+                    .catch((error) => {
+                        console.error("Error removing previous ID from allowed-card-ids:", error);
+                        alert("Error removing previous ID from allowed-card-ids: " + error);
+                    });
+            }
+            // function to update id in classroom table
+            function updateClassRoomId(newID, previousID) {
+                const classRoomRef = ref(db, `ClassRoom/${queryParams.get("class")}/ClassTeacher/${previousID}`);
+                // Retrieve the existing data from ClassRoom/ClassTeacher node
+                get(classRoomRef)
+                    .then((snapshot) => {
+                        if (snapshot.exists()) {
+                            const existingData = snapshot.val();
+                            console.log("Existing Data:", existingData);
+                            // Update the ID field in the ClassRoom/ClassTeacher node
+                            const classTeacherRef = ref(db, `ClassRoom/${queryParams.get("class")}/ClassTeacher/${newID}`);
+                            // Update each property within the ClassTeacher node
+                            const updatedData = {
+                                Email: existingData.Email,
+                                ID: newID,
+                                firstName: existingData.firstName,
+                                lastName: existingData.lastName,
+                                password: existingData.password
+                            };
+
+                            set(classTeacherRef, updatedData)
+                                .then(() => {
+                                    console.log("ClassRoom data updated successfully.");
+
+                                    // Remove the existing data in the previous ID
+                                    const previousClassTeacherRef = ref(db, `ClassRoom/${queryParams.get("class")}/ClassTeacher/${previousID}`);
+                                    remove(previousClassTeacherRef)
+                                        .then(() => {
+                                            console.log("Previous ID removed from ClassRoom.");
+                                            // alert("ClassRoom data updated successfully.");
+                                            // You can add additional code to handle the updated status here
+                                        })
+                                        .catch((error) => {
+                                            console.error("Error removing previous ID from ClassRoom:", error);
+                                            alert("Error removing previous ID from ClassRoom: " + error);
+                                        });
+                                })
+                                .catch((error) => {
+                                    console.error("Error updating ClassRoom/ClassTeacher:", error);
+                                    alert("Error updating ClassRoom/ClassTeacher: " + error);
+                                });
+                        } else {
+                            console.error("Record not found in ClassRoom.");
+                            alert("Record not found in ClassRoom.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error retrieving data from ClassRoom:", error);
+                        alert("Error retrieving data from ClassRoom: " + error);
+                    });
+                function redirectToTeacherRecord() {
+                    window.location.href = "teacherrecord.html";
+                }
+            }
+            updateBtn.addEventListener("click", UpdateData);
+        });
+
+    </script>
+</body>
+
+</html>

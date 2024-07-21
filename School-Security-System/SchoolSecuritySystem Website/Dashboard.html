@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="Dashboard.css" />
+  <link rel="stylesheet" href="./styles/sidebar.css" />
+  <!-- Boxicons CDN Link -->
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="./styles/Dashboard.css">
+  <link rel="stylesheet" href="./styles/dashboardTables.css">
+ 
+</head>
+
+<body>
+  
+  <div class="sidebar">
+    
+    <ul class="nav-links">
+      <li>
+        <a href="Dashboard.html" class="active">
+          <i class="bx bx-grid-alt" ></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+       
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span class="link_name">Teacher Management</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Category</a></li>
+          <li><a href="insertTeacherData.html">Teacher Registration</a></li>
+          <li><a href="teacherRecord.html">Teachers Record</a></li>
+          <li><a href="Attendance.html">Attendance</a></li>
+          <li><a href="ManuallyAttendanceMarkStd.html">Manual Attenedance</a></li>
+          <li><a href="LeaveRequests.html">Leave Requests</a></li>
+          <li><a href="TeacherCardRequest.html">Card Requests</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+            <span class="link_name">Student Management</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+         
+          <li><a href="InsertStdData.html">Student Registration</a></li>
+          <li><a href="StudentRecord.html">Students Record</a></li>
+          <li><a href="StudentNewCardRequests.html">Card Requests</a></li>
+        </ul>
+      </li>
+    
+      <li>
+        <a href="securityOfficer.html">
+          <i class="fas fa-shield"></i>
+          <span class="link_name">Security Officer</span>
+        </a>
+      
+      </li>
+      <li>
+        <a href="setSchoolTiming.html">
+          <i class="fas fa-clock"></i>
+          <span class="link_name">Set School Timing</span>
+        </a>
+      </li>
+      <li>
+        <a href="map.html">
+          <i class="fas fa-map-marker-alt"></i>
+          <span class="link_name">Select School Area</span>
+        </a>
+      </li>
+    
+      </ul>
+      <a href="index.html" >
+        <div class="profile-details">
+          <div class="profile-content">
+            <img src="website_log.png" alt="profileImg">
+          </div>
+          <div class="name-job">
+            <div class="profile_name">Admin</div>
+            <div class="job">Log out</div>
+          </div>
+          <i class='bx bx-log-out' style="color: #fff; font-size: 30px;"></i>
+        </div>
+      </a>
+
+  </div>
+
+  
+ 
+    
+    <section class="home-section">
+     
+    <nav>
+      <div class="profile-details" style="width: 50px;  ">
+      <span class="admin_name"> Dashboard <i class="bx bx-grid-alt"></i></span>
+      </div>
+    
+    <div id="myDropdown" class="dropdown">
+      <div id="bell-icon-container">
+        <i class="fas fa-bell"></i>
+        <span id="notification-count" class="badge">0</span>
+    </div> 
+    </div>
+   
+    <div class="logo-details">
+     
+      
+      <img src="website_log.png" alt="Website Logo" style="width: 50px; display: block; margin: 0 auto; width: 50px;
+      display: block;
+      margin: 0 auto;
+      animation: spin 20s linear infinite;">
+
+      <div>
+        <span style="display: block; text-align: center; color:black; font-weight: bold;">School Security System</span>
+  
+      </div>
+   
+      
+    </div>
+  
+      <div class="profile-details">
+          
+        <span class="admin_name">Admin Pannel <i class="fa fa-user-circle"></i>
+        </span>
+       
+      </div>
+
+    </nav>
+    
+    <div class="home-content">
+      <div class="overview-boxes">
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic"  style="margin-top: -2%;">Total Teachers <i class="fa fa-users" style="color:#e67e22"></i></div>
+            <div class="dashboard-section" id="teachers-enrolled">
+            </div>
+
+          </div>
+
+        </div>
+        
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic"  style="margin-top: -2%;">Total Students<i class="fa fa-users" style="color:darkblue"></i>
+            </div>
+            <div class="dashboard-section" id="students-enrolled">
+            </div>
+          </div>
+        </div>
+        <div class="school-timing-box">
+          <div class="right-side">
+            <div class="box-topic">School Timings</div>
+            <div style="text-align: center;  font-size: 25px;">
+            <i class='bx bxs-time'style="color:white" ></i>
+          </div>
+            <div class="dashboard-section" id="school-timings">
+             
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Total Entries<i class='bx bxs-school'style="color:green"></i>
+            </div>
+            <div class="dashboard-section" id="total-entries">
+            </div>
+          </div>
+        </div>
+        <div class="box">
+          <div class="right-side" style="margin-right:-10% ;">
+            <div class="box-topic">Unauthorized<i class='bx bxs-school'style="color:red"></i>
+            </div>
+            <div class="dashboard-section" id="unauthorized-entries">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ////////////////////////////////////////////////////// -->
+    <div class="record-table">
+      <div class="table box">
+        <div class="classdataheading">
+        <h2 style="text-align: center;">Classes Data</h2>
+      </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Classes</th>
+              <th>Number of Students</th>
+              <th>Class Teacher</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+           
+          <tr>
+  <td>Class 1</td>
+  <td id="students-in-class1">-</td>
+  <td id="class-teacher-class1">-</td>
+ 
+</tr>
+            <tr>
+              <td>Class 2</td>
+              <td id="students-in-class2">-</td>
+              <td id="class-teacher-class2">-</td>
+              
+            </tr>
+            <tr>
+              <td>Class 3</td>
+              <td id="students-in-class3">-</td>
+              <td id="class-teacher-class3">-</td>
+           
+            </tr>
+            <tr>
+              <td>Class 4</td>
+              <td id="students-in-class4">-</td>
+              <td id="class-teacher-class4">-</td>
+              
+            </tr>
+            <tr>
+              <td>Class 5</td>
+              <td id="students-in-class5">-</td>
+              <td id="class-teacher-class5">-</td>
+              
+            </tr>
+            <tr>
+              <td>Class 6</td>
+              <td id="students-in-class6">-</td>
+              <td id="class-teacher-class6">-</td>
+              
+            </tr>
+            <tr>
+              <td>Class 7</td>
+              <td id="students-in-class7">-</td>
+              <td id="class-teacher-class7">-</td>
+             
+            </tr>
+            <tr>
+              <td>Class 8</td>
+              <td id="students-in-class8">-</td>
+              <td id="class-teacher-class8">-</td>
+           
+            </tr>
+            <tr>
+              <td>Class 9</td>
+              <td id="students-in-class9">-</td>
+              <td id="class-teacher-class9">-</td>
+             
+            </tr>
+            <tr>
+              <td>Class 10</td>
+              <td id="students-in-class10">-</td>
+              <td id="class-teacher-class10">-</td>
+             
+            </tr>
+          
+          </tbody>
+
+        </table>
+        
+        <div class="button" >
+          <button id="seeAllButton">See All</button>
+        </div>
+      </div>
+      <style>
+        
+      
+      </style>
+      </style>
+
+    </div>
+
+
+  </section>
+  <script type="module" src="./scripts/notification.js"></script>
+<script src="./scripts/sidebar.js"></script>
+
+  <script type="module">
+
+
+  
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+    
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyDCXvbE44rMmYlkSLMIsramC6tiBcLBNH4",
+      authDomain: "schoolsecuritysystemusin-4c8fa.firebaseapp.com",
+      databaseURL: "https://schoolsecuritysystemusin-4c8fa-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "schoolsecuritysystemusin-4c8fa",
+      storageBucket: "schoolsecuritysystemusin-4c8fa.appspot.com",
+      messagingSenderId: "58102931592",
+      appId: "1:58102931592:web:8b2a5aee4664b3df023f3d",
+      measurementId: "G-KTK6CHM7EF"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+   
+    import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+    
+    const db = getDatabase();
+    // Reference to the TeacherData node
+    const teacherDataRef = ref(db, "TeacherData");
+
+    // Reference to the StudentData node
+    const studentDataRef = ref(db, "StudentData");
+    // Reference to the allowed-card-ids node
+    const allowedCardIdsRef = ref(db, "allowed-card-ids");
+
+    const schoolTimingRef = ref(db, "SchoolTiming");
+   
+    // Function to fetch and display the total number of teachers
+    function displayTotalTeachers() {
+      get(teacherDataRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            // Calculate the total number of teachers based on the number of child nodes
+            const totalTeachers = Object.keys(snapshot.val()).length;
+
+            // Display the total number of teachers in the dashboard section
+            const teachersEnrolledSection = document.getElementById("teachers-enrolled");
+            teachersEnrolledSection.innerHTML = `<span>${totalTeachers}</span>`;
+          } else {
+            console.log("No data found in TeacherData.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  
+    function displayTotalStudents() {
+      get(studentDataRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        // Extract all the IDs from the snapshot
+        const allIDs = Object.values(snapshot.val()).flatMap(student => Object.keys(student));
+        
+        // Remove duplicates to get unique IDs
+        const uniqueIDs = [...new Set(allIDs)];
+
+        // Display the total number of unique IDs
+        const totalUniqueIDs = uniqueIDs.length;
+
+        const uniqueIDsSection = document.getElementById("students-enrolled");
+        uniqueIDsSection.innerHTML = `<span>${totalUniqueIDs}</span>`;
+      } else {
+        console.log("No data found in StudentData.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+    }
+    
+    function displaySchoolTimings() {
+  get(schoolTimingRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const schoolTimingData = snapshot.val();
+        const openingTime = schoolTimingData.openingTime;
+        const closingTime = schoolTimingData.closingTime;
+
+        // Display school timings in the dashboard section
+        const schoolTimingsSection = document.getElementById("school-timings");
+        schoolTimingsSection.innerHTML = `<span>Opening: ${openingTime}  
+          Closing: ${closingTime}</span>`;
+      } else {
+        console.log("No data found in SchoolTiming.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching school timing data:", error);
+    });
+}
+
+ 
+function displayTeacherName(classNumber) {
+  const classTeacherSection = document.getElementById("class-teacher-class" + classNumber);
+
+  // Reference to the ClassTeacher node of the specific class
+  const classTeacherRef = ref(db, `ClassRoom/${classNumber}/ClassTeacher`);
+
+  get(classTeacherRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const classTeacherData = snapshot.val();
+        const teacherId = Object.keys(classTeacherData)[0]; // Get the first (and only) key in the object
+        const teacher = classTeacherData[teacherId];
+        const firstName = teacher.firstName;
+        const lastName = teacher.lastName;
+
+        // Display the teacher's name if it exists
+        if (firstName && lastName) {
+          classTeacherSection.textContent = `${firstName} ${lastName}`;
+        } else {
+          classTeacherSection.textContent = "No Class Teacher Assigned";
+        }
+      } else {
+        classTeacherSection.textContent = "No Class Teacher Assigned";
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching class teacher data for Class " + classNumber + ":", error);
+    });
+}
+
+// Function to fetch and display the total number of students in a class
+function displayTotalStudentsInClass(classNumber) {
+  const studentsInClassSection = document.getElementById("students-in-class" + classNumber);
+
+  // Reference to the Students node of the specific class
+  const studentsRef = ref(db, `ClassRoom/${classNumber}/Students`);
+
+  get(studentsRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const studentsData = snapshot.val();
+        const totalStudents = Object.keys(studentsData).length;
+
+        // Display the total number of students in the class
+        studentsInClassSection.textContent = `${totalStudents}`;
+      } else {
+        studentsInClassSection.textContent = "No Students";
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching student data for Class " + classNumber + ":", error);
+    });
+}
+
+// Call the displayTeacherName and displayTotalStudentsInClass functions for each class
+for (let i = 1; i <= 10; i++) {
+  displayTeacherName(i);
+  displayTotalStudentsInClass(i);
+}
+    // Function to fetch and display the total entries in allowed-card-ids
+    function displayTotalAllowedCardIds() {
+      get(allowedCardIdsRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            // Calculate the total number of entries based on the number of child nodes
+            const totalEntries = Object.keys(snapshot.val()).length;
+ console.log(totalEntries)
+            // Display the total number of entries
+            const totalEntriesElement = document.getElementById("total-entries");
+            totalEntriesElement.textContent = `Total Allowed Card IDs: ${totalEntries}`;
+          } else {
+            console.log("No data found in allowed-card-ids.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+    //function to dispaly all the id present in unauthorized card id table in firebase
+    function displayTotalUnauthorizedCardIds() {
+  // Get the current date in the format "DD-MM-YYYY"
+  const currentDate = new Date().toLocaleDateString('en-GB').replace(/\//g, '-');
+
+  // Reference to the unauthorizedCardIds for the current date
+  const unauthorizedCardIdsRef = ref(getDatabase(), `Unauthorized Card Scanned/${currentDate}`);
+
+  get(unauthorizedCardIdsRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        // Calculate the total number of entries based on the number of child nodes
+        const totalEntries = Object.keys(snapshot.val()).length;
+
+        // Display the total number of entries
+        const totalEntriesElement = document.getElementById("unauthorized-entries");
+        totalEntriesElement.textContent = `Cards Scanned Today: ${totalEntries}`;
+      } else {
+        console.log(`No data found for ${currentDate} in unauthorized-card-ids.`);
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
+
+  // Add an event listener to the "See All" button
+  const seeAllButton = document.getElementById("seeAllButton");
+  const tableRows = document.querySelectorAll("table tbody tr");
+  const numRowsToShowInitially = 5;
+  let showAll = false;
+
+  // Initially, hide extra rows
+  tableRows.forEach((row, index) => {
+    if (index >= numRowsToShowInitially) {
+      row.style.display = "none";
+    }
+  });
+
+  seeAllButton.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // Toggle the visibility of all hidden rows
+    tableRows.forEach((row, index) => {
+      if (index >= numRowsToShowInitially) {
+        if (showAll) {
+          row.style.display = "none";
+        } else {
+          row.style.display = "table-row";
+        }
+      }
+    });
+
+    // Update the button text
+    if (showAll) {
+      seeAllButton.textContent = "See All";
+    } else {
+      seeAllButton.textContent = "See Less";
+    }
+
+    // Toggle the showAll flag
+    showAll = !showAll;
+  });
+
+   
+  
+
+    // Call the displayTotalTeachers and displayTotalStudents functions when the page loads
+    window.addEventListener('load', () => {
+      displayTotalTeachers();
+      displayTotalStudents();
+      displaySchoolTimings() ;
+      // displayClassTeachers();
+      displayTotalAllowedCardIds();
+      displayTotalUnauthorizedCardIds()
+
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+     
+
+      
+   
+      const dropdownButtons = document.querySelectorAll('.nav-dropdown-btn');
+        dropdownButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const content = this.nextElementSibling;
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            });
+          });
+          const currentLocation = window.location.href;
+        const navLinks = document.querySelectorAll(".nav-links li a");
+
+        navLinks.forEach((link) => {
+          if (link.href === currentLocation) {
+            link.classList.add("active");
+          }
+        });
+    });
+  </script>
+
+</body>
+
+</html>

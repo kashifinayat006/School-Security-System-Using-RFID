@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #426a85c0;
+}
+
+.form-container {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+
+
+
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+select {
+    cursor: pointer;
+}
+
+.update-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.update-button:hover {
+    background-color: darkgreen;
+    
+}
+
+.update-button.clicked {
+    background-color: #000000;
+    transform: scale(0.95);
+}
+
+.form-container h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+.form-group {
+margin-bottom: 15px;
+}
+
+label {
+display: block;
+font-weight: bold;
+margin-bottom: 5px;
+color: #333;
+}
+
+input[type="text"],
+select {
+width: 100%;
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 5px;
+outline: none;
+transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus,
+select:focus {
+border-color: #550A35;
+box-shadow: 0px 0px 5px rgba(76, 175, 80, 0.3);
+}
+.openPopup {
+    padding: 4px 20px;
+background-color: #007BFF;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+transition: background-color 0.3s;
+}
+
+button.openPopup:hover {
+background-color: #0056b3;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+transform: translateY(-2px);
+} 
+.previousID {
+    color: white;
+    background-color:#550A35;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 2px;
+    text-align: center;
+   
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}

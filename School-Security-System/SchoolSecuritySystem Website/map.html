@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Draw Polygon with Current Location</title>
+  <!-- Include Leaflet CSS and JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+  <!-- Import the modular Firebase modules -->
+  <link rel="stylesheet" href="Dashboard.css" />
+  <link rel="stylesheet" href="styles/sidebar.css">
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    } */
+
+    #map {
+      z-index: 0;
+      height: 90vh;
+      width: 100%;
+    }
+
+    #savepolygonbtn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #0A2558;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    #savepolygonbtn:hover{
+      background-color: #550A35;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transform: scale(1.05);
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="sidebar">
+    
+    <ul class="nav-links">
+      <li>
+        <a href="Dashboard.html" class="active">
+          <i class="bx bx-grid-alt"></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+       
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span class="link_name">Teacher Management</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Category</a></li>
+          <li><a href="insertTeacherData.html">Teacher Registration</a></li>
+          <li><a href="teacherRecord.html">Teachers Record</a></li>
+          <li><a href="Attendance.html">Attendance</a></li>
+          <li><a href="ManuallyAttendanceMarkStd.html">Manual Attenedance</a></li>
+          <li><a href="LeaveRequests.html">Leave Requests</a></li>
+          <li><a href="TeacherCardRequest.html">Card Requests</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+            <span class="link_name">Student Management</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+         
+          <li><a href="InsertStdData.html">Student Registration</a></li>
+          <li><a href="StudentRecord.html">Students Record</a></li>
+          <li><a href="StudentNewCardRequests.html">Card Requests</a></li>
+        </ul>
+      </li>
+    
+      <li>
+        <a href="securityOfficer.html">
+          <i class="fas fa-shield"></i>
+          <span class="link_name">Security Officer</span>
+        </a>
+      
+      </li>
+      <li>
+        <a href="setSchoolTiming.html">
+          <i class="fas fa-clock"></i>
+          <span class="link_name">Set School Timing</span>
+        </a>
+      </li>
+      <li>
+        <a href="map.html">
+          <i class="fas fa-map-marker-alt"></i>
+          <span class="link_name">Select School Area</span>
+        </a>
+      </li>
+      <li>
+      </ul>
+      <a href="index.html" >
+        <div class="profile-details">
+          <div class="profile-content">
+            <img src="website_log.png" alt="profileImg">
+          </div>
+          <div class="name-job">
+            <div class="profile_name">Admin</div>
+            <div class="job">Log out</div>
+          </div>
+          <i class='bx bx-log-out' style="color: #fff; font-size: 30px;"></i>
+        </div>
+      </a>
+
+  </div>
+  <div class="main-content">
+    
+  <section class="home-section">
+    <nav>
+      <div class="profile-details" style="width: 50px;  ">
+      <span class="admin_name">Select School Area <i class="fas fa-map-marker-alt"></i></span>
+      </div>
+    
+    <!-- <div id="myDropdown" class="dropdown">
+      <div id="bell-icon-container">
+        <i class="fas fa-bell"></i>
+        <span id="notification-count" class="badge">0</span>
+    </div> 
+    </div> -->
+   
+    <div class="logo-details">
+     
+      
+      <img src="website_log.png" alt="Website Logo" style="width: 50px; display: block; margin: 0 auto; ">
+
+      <div>
+        <span style="display: block; text-align: center; color:black; font-weight: bold;">School Security System</span>
+  
+      </div>
+   
+      
+    </div>
+  
+      <div class="profile-details">
+          
+        <span class="admin_name">Admin Pannel <i class="fa fa-user-circle"></i>
+        </span>
+       
+      </div>
+
+    </nav>
+  
+   
+  <div id="map"></div>
+  <button id='savepolygonbtn'>Save Polygon Data</button>
+  
+</div>
+
+</section>
+<script src="./scripts/sidebar.js"></script>
+  <script type="module">
+
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js';
+    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js';
+    import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js';
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDCXvbE44rMmYlkSLMIsramC6tiBcLBNH4",
+      authDomain: "schoolsecuritysystemusin-4c8fa.firebaseapp.com",
+      databaseURL: "https://schoolsecuritysystemusin-4c8fa-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "schoolsecuritysystemusin-4c8fa",
+      storageBucket: "schoolsecuritysystemusin-4c8fa.appspot.com",
+      messagingSenderId: "58102931592",
+      appId: "1:58102931592:web:8b2a5aee4664b3df023f3d",
+      measurementId: "G-KTK6CHM7EF"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    const savePolygonBtn = document.getElementById('savepolygonbtn');
+
+    var map = L.map('map').setView([14.0860746, 100.608406], 6);
+
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+
+    osm.addTo(map);
+
+    var marker, circle;
+
+    function getPosition(position) {
+      var lat = position.coords.latitude;
+      var long = position.coords.longitude;
+      var accuracy = position.coords.accuracy;
+
+      if (marker) {
+        map.removeLayer(marker);
+      }
+
+      if (circle) {
+        map.removeLayer(circle);
+      }
+
+      marker = L.marker([lat, long]);
+      circle = L.circle([lat, long], { radius: accuracy });
+
+      var featureGroup = L.featureGroup([marker, circle]).addTo(map);
+
+      map.fitBounds(featureGroup.getBounds());
+
+      console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy);
+    }
+
+    if (!navigator.geolocation) {
+      console.log("Your browser doesn't support geolocation feature!");
+    } else {
+      navigator.geolocation.getCurrentPosition(getPosition);
+    }
+
+    var drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
+
+    var drawControl = new L.Control.Draw({
+      edit: {
+        featureGroup: drawnItems,
+      },
+      draw: {
+        polygon: {
+          shapeOptions: {
+            color: 'purple',
+            weight: 6,  // Increase the weight for larger drawn items
+            opacity: 1
+          }
+        },
+        polyline: false,
+        rectangle: false,
+        circle: false,
+        marker: false,
+      },
+    });
+
+    map.addControl(drawControl);
+
+    // Handle drawn polygon
+    map.on("draw:created", function (e) {
+      var layer = e.layer;
+      drawnItems.addLayer(layer);
+
+      var polygonCoordinates = layer.toGeoJSON().geometry.coordinates[0];
+
+      // Convert the coordinates to the desired format
+      var polygonData = polygonCoordinates.map(function (coord) {
+        return { lat: coord[1], lng: coord[0] };
+      });
+
+      // Add the first point again to make it a closed polygon
+      polygonData.push(polygonData[0]);
+
+      console.log("Polygon Coordinates: ", polygonData);
+    });
+
+    function savePolygonData() {
+      // Get the drawn polygon data
+      var drawnPolygon = drawnItems.toGeoJSON();
+      var polygonCoordinates = drawnPolygon.features[0].geometry.coordinates[0];
+
+      // Convert the coordinates to the desired format
+      var polygonData = polygonCoordinates.map(function (coord) {
+        return { lat: coord[1], lng: coord[0] };
+      });
+
+      // Add the first point again to make it a closed polygon
+      polygonData.push(polygonData[0]);
+
+      // Log the polygon coordinates (optional)
+      console.log("Polygon Coordinates: ", polygonData);
+
+      // Save the polygon data to Firebase Realtime Database using modular API
+      const database = getDatabase(app);
+      const polygonsRef = ref(database, 'polygons');
+
+      set(polygonsRef, {
+        coordinates: polygonData
+      });
+
+      alert("Polygon data saved to Firebase!");
+    }
+
+    savePolygonBtn.addEventListener('click', savePolygonData);
+  </script>
+</body>
+
+</html>

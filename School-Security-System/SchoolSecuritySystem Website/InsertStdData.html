@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="phpcode/styles2.css">
+  <link rel="stylesheet" href="Dashboard.css">
+  <link rel="stylesheet" href="./styles/sidebar.css" />
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+
+  <title>Student Registration</title>
+  <!-- Boxicons CDN Link -->
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+
+
+
+  
+
+
+</head>
+
+<body>
+  <div class="sidebar">
+    
+    <ul class="nav-links">
+      <li>
+        <a href="Dashboard.html" class="active">
+          <i class="bx bx-grid-alt"></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+       
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span class="link_name">Teacher Management</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Category</a></li>
+          <li><a href="insertTeacherData.html">Teacher Registration</a></li>
+          <li><a href="teacherRecord.html">Teachers Record</a></li>
+          <li><a href="Attendance.html">Attendance</a></li>
+          <li><a href="ManuallyAttendanceMarkStd.html">Manual Attenedance</a></li>
+          <li><a href="LeaveRequests.html">Leave Requests</a></li>
+          <li><a href="TeacherCardRequest.html">Card Requests</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+            <span class="link_name">Student Management</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+         
+          <li><a href="InsertStdData.html">Student Registration</a></li>
+          <li><a href="StudentRecord.html">Students Record</a></li>
+          <li><a href="StudentNewCardRequests.html">Card Requests</a></li>
+        </ul>
+      </li>
+    
+      <li>
+        <a href="securityOfficer.html">
+          <i class="fas fa-shield"></i>
+          <span class="link_name">Security Officer</span>
+        </a>
+      
+      </li>
+      <li>
+        <a href="setSchoolTiming.html">
+          <i class="fas fa-clock"></i>
+          <span class="link_name">Set School Timing</span>
+        </a>
+      </li>
+      <li>
+        <a href="map.html">
+          <i class="fas fa-map-marker-alt"></i>
+          <span class="link_name">Select School Area</span>
+        </a>
+      </li>
+      <li>
+      </ul>
+      <a href="index.html" >
+        <div class="profile-details">
+          <div class="profile-content">
+            <img src="website_log.png" alt="profileImg">
+          </div>
+          <div class="name-job">
+            <div class="profile_name">Admin</div>
+            <div class="job">Log out</div>
+          </div>
+          <i class='bx bx-log-out' style="color: #fff; font-size: 30px;"></i>
+        </div>
+      </a>
+
+  </div>
+  <section class="home-section">
+
+    <nav>
+      <div class="profile-details" style="width: 50px;  ">
+        <span class="admin_name">Student Registration <i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
+      </div>
+      <div class="logo-details">
+     
+      
+        <img src="website_log.png" alt="Website Logo" style="width: 50px; display: block; margin: 0 auto; ">
+  
+        <div>
+          <span style="display: block; text-align: center; color:black; font-weight: bold;">School Security System</span>
+    
+        </div>
+     
+        
+      </div>
+      <div class="profile-details">
+
+        <span class="admin_name">Admin Pannel <i class="fa fa-user-circle"></i>
+        </span>
+
+      </div>
+    </nav>
+
+    <div class="home-content">
+
+
+
+      <script src="inputValidationStd.js">
+
+      </script>
+
+      <div class="tick" id="tick">
+        <div class="tick-mark">&#10004;</div>
+        <p style="display: contents;" class="success-message">Card Scanned Successfully</p>
+      </div>
+
+
+      <div class="overlay" id="overlay"></div>
+      <div class="popup" id="popup">
+        <button class="close-button" id="closePopup">&times;</button>
+        <div class="card">
+          <div class="scan-line"></div>
+          <div class="card-details">
+            <h1>Card Scanning</h1>
+            <p style="display: contents;">Place your card on the scanner</p>
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <br>
+      <div class="enterdetailheader">
+        <h1 style="text-align: center;">Enter Student details</h1>
+
+        <div id="form-container">
+
+
+          <div class="form-group">
+            <!-- <label for="enterID">ID</label> -->
+
+            <p id="enterID" style="
+     border-radius: 10px;
+            font-size: 16px;
+            background: linear-gradient(to right, #ff9900, #ff5722);
+            color: white;
+            text-align: center;
+            width: 600px;
+            height: 27px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            margin-left:50px;
+            border: 2px solid #ff5722;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);">ID</p>
+
+
+
+            
+          </div>
+          <p id="errorID" class="error-message" style="color: red; font-weight: bold; align-items: center;
+                    justify-content: center;"></p>
+
+          <div class="form-group" style="padding-left: 270px;">
+            <button id="openPopup">Get Card UID <i class="fa fa-id-card-o" aria-hidden="true"></i></button>
+          </div>
+
+
+          <div class="form-group">
+            <label for="enterFirstName">First Name</label>
+            <input type="text" id="enterFirstName" oninput="validateInput('enterFirstName')">
+            <p id="enterFirstName-error" style="color: red;"></p>
+          </div>
+          <div class="form-group">
+            <label for="enterLastName">Last Name</label>
+            <input type="text" id="enterLastName" oninput="validateInput('enterLastName')">
+            <p id="enterLastName-error" style="color: red;"></p>
+          </div>
+
+          <div class="form-group">
+            <label for="enterFatherName">Father Name</label>
+
+            <input type="text" id="enterFatherName" oninput="validateInput('enterFatherName')">
+            <p id="enterFatherName-error" style="color: red;"></p>
+          </div>
+
+          <div class="form-group">
+            <label for="enterFatherCNIC">Father CNIC</label>
+            <input type="text" id="enterFatherCNIC" maxlength="15">
+            <p id="enterFatherCNIC-error" style="color: red;"></p>
+          </div>
+
+          <div class="form-group">
+            <label for="enterClass" class="label-style">Class</label>
+
+            <select id="enterClass" onchange="validateInput('enterClass')">
+              <option value="">Select Class</option>
+              <option value="1">Class 1</option>
+              <option value="2">Class 2</option>
+              <option value="3">Class 3</option>
+              <option value="4">Class 4</option>
+              <option value="5">Class 5</option>
+              <option value="6">Class 6</option>
+              <option value="7">Class 7</option>
+              <option value="8">Class 8</option>
+              <option value="9">Class 9</option>
+              <option value="10">Class 10</option>
+            </select>
+            <p id="enterClass-error" style="color: red;"></p>
+          </div>
+          <div class="form-group">
+            <label for="genderValue">Gender</label>
+            <div>
+              <input type="radio" id="male" name="gender" value="male">
+              <label for="male">Male</label>
+            </div>
+            <div>
+              <input type="radio" id="female" name="gender" value="female">
+              <label for="female">Female</label>
+              
+            </div>
+            <p id="gender-error" style="color: red;"></p>
+          </div>
+
+          <button id="submit-button" class="Stdbutton" disabled>INSERT</button>
+        </div>
+      </div>
+
+      <div id="idList">
+      </div>
+
+      <script type="module" src="phpcode/script2.js"> </script>
+<script src="./scripts/sidebar.js"></script>
+      <script type="module">
+
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyDCXvbE44rMmYlkSLMIsramC6tiBcLBNH4",
+          authDomain: "schoolsecuritysystemusin-4c8fa.firebaseapp.com",
+          databaseURL: "https://schoolsecuritysystemusin-4c8fa-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "schoolsecuritysystemusin-4c8fa",
+          storageBucket: "schoolsecuritysystemusin-4c8fa.appspot.com",
+          messagingSenderId: "58102931592",
+          appId: "1:58102931592:web:8b2a5aee4664b3df023f3d",
+          measurementId: "G-KTK6CHM7EF"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        // import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+        import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+        const db = getDatabase();
+ 
+
+        const enterID = document.querySelector("#enterID");
+        const errorID = document.querySelector("#errorID");
+        const enterFirstName = document.querySelector("#enterFirstName");
+        const enterLastName = document.querySelector("#enterLastName");
+        const enterFatherName = document.querySelector("#enterFatherName");
+        const enterClass = document.querySelector("#enterClass");
+        const maleRadio = document.querySelector("#male");
+        const femaleRadio = document.querySelector("#female");
+        const insertBtn = document.querySelector("#submit-button");
+        function InsertStdData() {
+    const id = parseInt(enterID.textContent);
+    const firName = enterFirstName.value;
+    const lasName = enterLastName.value;
+    const FatherCNIC = enterFatherCNIC.value;
+    const ClassName = enterClass.value;
+    let genderValue = "";
+    const cardID = enterID.textContent;
+    if(cardID == 'ID' || !maleRadio.checked && !femaleRadio.checked )
+    {
+      
+      if(cardID == "ID"){
+      document.getElementById("errorID").innerHTML = "*** Please Scan RFID Card First";
+      }
+      if(!maleRadio.checked && !femaleRadio.checked){
+        document.getElementById("gender-error").innerHTML = "** Please Select Gender";
+        
+      }
+      
+    }
+    else{
+
+    if (maleRadio.checked) {
+        genderValue = maleRadio.value;
+    } else if (femaleRadio.checked) {
+        genderValue = femaleRadio.value;
+    }
+
+    const gender = genderValue;
+
+    if (ClassName === "") {
+        document.getElementById("enterClass-error").textContent = "Please select a class.";
+        return;
+    } else {
+        document.getElementById("enterClass-error").textContent = "";
+    }
+
+    const studentData = {
+        ID: id,
+        firstname: firName,
+        lastname: lasName,
+        cName: ClassName,
+        fName: enterFatherName.value,
+        gen: gender,
+        cnic : FatherCNIC
+    };
+
+    const studentRef = ref(db, "StudentData/" + FatherCNIC + "/" + id);
+
+    get(studentRef)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                // CNIC already exists, update student data
+                set(studentRef, studentData);
+                alert("Data updated successfully");
+            } else {
+                // CNIC doesn't exist, create a new node
+                set(ref(db, "StudentData/" + FatherCNIC + "/" + id), studentData)
+                    .then(() => {
+                        alert("Data added successfully");
+                    })
+                    .catch((error) => {
+                        alert(error);
+                    });
+            }
+        })
+        .catch((error) => {
+            console.error("Error checking CNIC: ", error);
+        });
+
+    set(ref(db, "ClassRoom/" + ClassName + "/Students/" + id), {
+        ID: id,
+        firstName: firName,
+        lastName: lasName,
+        cnic : FatherCNIC,
+    })
+        .then(() => {
+            console.log("Data written successfully!");
+            enterID.textContent = "ID";
+            enterFirstName.value = "";
+            enterLastName.value = "";
+            enterFatherName.value = "";
+            enterClass.value = "";
+            enterFatherCNIC.value = "";
+            gender.value = "";
+            enterFatherCnic.value="";
+        })
+        .catch((error) => {
+            console.error("Error writing data: ", error);
+        });
+
+    set(ref(db, "allowed-card-ids/" + id), "allowed")
+        .then(() => {
+            console.log("Data written successfully!");
+        })
+        .catch((error) => {
+            console.error("Error writing data: ", error);
+        });
+      }
+}
+
+        var enterFatherCnic = document.getElementById("enterFatherCNIC");
+
+function formatCNIC() {
+    // Remove any non-numeric characters
+    var cnicValue = enterFatherCnic.value.replace(/\D/g, '');
+
+    // Check if the CNIC is empty or exceeds 13 digits
+    if (cnicValue.length === 0 || cnicValue.length > 13) {
+        enterFatherCnic.setCustomValidity('Invalid CNIC');
+    } else {
+        enterFatherCnic.setCustomValidity('');
+    }
+
+    // Format the CNIC with dashes
+    var formattedCNIC = '';
+
+    // Add dash after the first 5 digits
+    formattedCNIC += cnicValue.slice(0, 5) + '-';
+
+    // Add the next 7 digits
+    formattedCNIC += cnicValue.slice(5, 12);
+
+    // Add a dash before the last digit
+    formattedCNIC += '-' + cnicValue.slice(12);
+
+    // Update the input value with the formatted CNIC
+    enterFatherCnic.value = formattedCNIC;
+}
+
+  const dropdownButtons = document.querySelectorAll('.nav-dropdown-btn');
+    dropdownButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            const content = this.nextElementSibling;
+            const isOpen = content.style.display === 'block';
+            content.style.display = isOpen ? 'none' : 'block';
+
+            // Store the state in sessionStorage
+            const dropdownId = this.getAttribute('data-dropdown-id');
+            sessionStorage.setItem(`dropdown-${dropdownId}`, isOpen ? 'closed' : 'open');
+        });
+
+        // Check the sessionStorage to set the initial state
+        const dropdownId = button.getAttribute('data-dropdown-id');
+        const storedState = sessionStorage.getItem(`dropdown-${dropdownId}`);
+        if (storedState === 'open') {
+            const content = button.nextElementSibling;
+            content.style.display = 'block';
+            
+        }
+        
+    });
+
+
+enterFatherCnic.addEventListener('input', formatCNIC);
+
+        insertBtn.addEventListener('click', InsertStdData);
+      </script>
+
+</body>
+
+</html>

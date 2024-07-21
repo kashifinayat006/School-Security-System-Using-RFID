@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RFID Card Scanner</title>
+
+    
+    <link rel="stylesheet" href="styles2.css">
+</head>
+
+<body>
+    <button id="openPopup">Get Card UID</button>
+    <h1 id="cardId">Card ID is : </h1>
+
+
+    <div class="tick" id="tick">
+        <div class="tick-mark">&#10004;</div>
+        <p class="success-message">Card Scanned Successfully</p>
+    </div>
+
+
+
+
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="popup">
+        <button class="close-button" id="closePopup">&times;</button>
+        <div class="card">
+            <div class="scan-line"></div>
+            <div class="card-details">
+                <h1>Card Scanning</h1>
+                <p>Place your card on the scanner</p>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/spin.js@2.3.2/spin.min.js"></script>
+    <script src="script2.js"> </script>
+</body>
+
+</html>

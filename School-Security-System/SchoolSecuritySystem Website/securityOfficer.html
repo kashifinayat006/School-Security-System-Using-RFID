@@ -1,0 +1,271 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Officer Registration</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="phpcode/styles2.css">
+    <link rel="stylesheet" href="Dashboard.css">
+    <link rel="stylesheet" href="styles/sidebar.css">
+    
+</head>
+
+<body>
+  <div class="sidebar">
+    
+    <ul class="nav-links">
+      <li>
+        <a href="Dashboard.html" class="active">
+          <i class="bx bx-grid-alt"></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+       
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span class="link_name">Teacher Management</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Category</a></li>
+          <li><a href="insertTeacherData.html">Teacher Registration</a></li>
+          <li><a href="teacherRecord.html">Teachers Record</a></li>
+          <li><a href="Attendance.html">Attendance</a></li>
+          <li><a href="ManuallyAttendanceMarkStd.html">Manual Attenedance</a></li>
+          <li><a href="LeaveRequests.html">Leave Requests</a></li>
+          <li><a href="TeacherCardRequest.html">Card Requests</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+            <span class="link_name">Student Management</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+         
+          <li><a href="InsertStdData.html">Student Registration</a></li>
+          <li><a href="StudentRecord.html">Students Record</a></li>
+          <li><a href="StudentNewCardRequests.html">Card Requests</a></li>
+        </ul>
+      </li>
+    
+      <li>
+        <a href="securityOfficer.html">
+          <i class="fas fa-shield"></i>
+          <span class="link_name">Security Officer</span>
+        </a>
+      
+      </li>
+      <li>
+        <a href="setSchoolTiming.html">
+          <i class="fas fa-clock"></i>
+          <span class="link_name">Set School Timing</span>
+        </a>
+      </li>
+      <li>
+        <a href="map.html">
+          <i class="fas fa-map-marker-alt"></i>
+          <span class="link_name">Select School Area</span>
+        </a>
+      </li>
+      <li>
+      </ul>
+      <a href="index.html" >
+        <div class="profile-details">
+          <div class="profile-content">
+            <img src="website_log.png" alt="profileImg">
+          </div>
+          <div class="name-job">
+            <div class="profile_name">Admin</div>
+            <div class="job">Log out</div>
+          </div>
+          <i class='bx bx-log-out' style="color: #fff; font-size: 30px;"></i>
+        </div>
+      </a>
+
+  </div>
+    <section class="home-section">
+        <nav>
+            <div class="profile-details" style="width: 100px;  ">
+                <span class="admin_name">Security Officer Registration <i class="fas fa-shield"></i></span>
+            </div>
+            <div class="logo-details">
+                <img src="website_log.png" alt="Website Logo" style="width: 50px; display: block; margin: 0 auto; ">
+                <div>
+                  <span style="display: block; text-align: center; color:black; font-weight: bold;">School Security System</span>          
+                </div>           
+              </div>
+            <div class="profile-details">
+                <span class="admin_name">Admin Pannel <i class="fa fa-user-circle"></i>
+                </span>
+            </div>
+        </nav>
+        <div class="home-content">
+            <script src="inputValidationTeac.js"> </script>
+            <!-- ////////////////// -->
+            
+           
+          
+            <!-- ////////////////////////// -->
+            <br>
+            <div class="enterdetailheader">
+                <h1 style="text-align: center;">Enter Security Officer details</h1>
+                <div id="form-container">
+                    <div class="form-group">
+                        <label for="enterFirstName">First Name</label>
+                        <input type="text" id="enterFirstName" oninput="validateInput('enterFirstName')">
+                        <p id="enterFirstName-error" style="color: red;"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="enterLastName">Last Name</label>
+                        <input type="text" id="enterLastName" oninput="validateInput('enterLastName')">
+                        <p id="enterLastName-error" style="color: red;"></p>
+                    </div>
+      
+
+                    <div class="createaccount">
+                        <h1>Create Account</h1>
+                        <div class="form-group">
+                            <label for="enterEmail">Email</label>
+                            <input type="text" id="enterEmail" oninput="validateInput('enterEmail')">
+                            <p id="enterEmail-error" style="color: red;"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="enterPassword">Password</label>
+                            <input type="password" id="enterPassword" style="height: 30px;width: 40%;" />
+                            <p id="enterPassword-error" style="color: red;"></p>
+                        </div>
+                    </div>
+                    <button id="submit-button" class="insertTec-button-Style" >INSERT</button>
+                </div>
+            </div>
+        </div>
+
+<Style>
+    .nav-dropdown-btn.active + .nav-dropdown-content {
+    background-color: #0A2558; /* Change this to the desired background color */
+    transition: background-color 0.3s ease; /* Add transition only for background color */
+}
+</Style>
+<script src="./scripts/sidebar.js"></script>
+        <script type="module" src="phpcode/script2.js"> </script>
+        <!-- <script type="module" src="./scripts/notification.js"></script> -->
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+            import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut ,sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+            const firebaseConfig = {
+                apiKey: "AIzaSyDCXvbE44rMmYlkSLMIsramC6tiBcLBNH4",
+                authDomain: "schoolsecuritysystemusin-4c8fa.firebaseapp.com",
+                databaseURL: "https://schoolsecuritysystemusin-4c8fa-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "schoolsecuritysystemusin-4c8fa",
+                storageBucket: "schoolsecuritysystemusin-4c8fa.appspot.com",
+                messagingSenderId: "58102931592",
+                appId: "1:58102931592:web:8b2a5aee4664b3df023f3d",
+                measurementId: "G-KTK6CHM7EF"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+            import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+            const db = getDatabase();
+            const auth = getAuth(app);
+
+           
+        const enterFirstName = document.querySelector("#enterFirstName");
+        const enterLastName = document.querySelector("#enterLastName");
+        const enterEmail = document.querySelector("#enterEmail");
+        const insertBtn = document.querySelector("#submit-button");
+        const enterPassword = document.querySelector("#enterPassword");
+        var userUid;
+
+        function createAccount() {
+var email = enterEmail.value;
+var password = enterPassword.value;
+                        createUserWithEmailAndPassword(auth, email, password)
+                            .then((userCredential) => {                             
+                                alert("Create Account Successfully");
+                                const user = userCredential.user;
+                                userUid = user.uid;
+                                sendEmailVerification(auth.currentUser)
+                                    .then(() => {
+                                        console.log("verifying");
+                                        AddTeacherRecord();                                   
+                                    });
+                            })
+                            .catch((error) => {
+                                
+                                const errorCode = error.code;
+                                const errorMessage = error.message;
+                                console.log(errorCode)
+                                if (errorCode === 'auth/email-already-in-use') {
+          alert('Email is already in use. Please try another one');
+        }
+
+        if (errorCode === 'auth/weak-password') {
+          alert('Password must be at least 6 characters long');
+        }
+
+        if (errorCode === 'auth/invalid-email') {
+          alert('Invalid Email');
+        }
+
+        if (errorCode === 'auth/missing-email') {
+          alert('Missing email');
+        }
+        if (errorCode === 'auth/internal-error') {
+         alert('Password missing');
+        }
+
+                            });
+                    }
+                function AddTeacherRecord() {
+                const firName = enterFirstName.value;
+                const lasName = enterLastName.value;
+                const email = enterEmail.value;
+                var password = enterPassword.value;
+                    set(ref(db, "SecurityOfficerProfile"), {
+                                            firstname: firName,
+                                            lastname: lasName,
+                                            
+                                            Email: email,
+                                            
+                                            password: password,
+                                            uid: userUid
+                                        })
+                                            .then(() => {
+                                                alert("Data added successfully");
+                                                    enterFirstName.value = "";
+                                                    enterLastName.value = "";
+                                                    enterEmail.value = "";       
+                                            })
+                                            .catch((error) => {
+                                                alert(error);
+                                            });
+                                    }
+                               
+                        
+                 
+function InsertData() {
+             console.log('called')
+            }
+insertBtn.addEventListener('click', createAccount);    
+
+        </script>
+</body>
+
+</html>

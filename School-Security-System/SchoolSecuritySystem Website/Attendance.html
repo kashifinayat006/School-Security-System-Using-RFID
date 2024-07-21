@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Teacher Attendance Record</title>
+  <link rel="stylesheet" href="Dashboard.css" />
+  <link rel="stylesheet" href="styles/sidebar.css" />
+  <link rel="stylesheet" href="styles/card_leave_Attendance_Records.css">
+  <!-- Boxicons CDN Link -->
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- <link rel="stylesheet" href="./styles/Dashboard.css"> -->
+</head>
+
+<body>
+  <div class="sidebar">
+    
+    <ul class="nav-links">
+      <li>
+        <a href="Dashboard.html" class="active">
+          <i class="bx bx-grid-alt"></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+       
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span class="link_name">Teacher Management</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Category</a></li>
+          <li><a href="insertTeacherData.html">Teacher Registration</a></li>
+          <li><a href="teacherRecord.html">Teachers Record</a></li>
+          <li><a href="Attendance.html">Attendance</a></li>
+          <li><a href="ManuallyAttendanceMarkStd.html">Manual Attenedance</a></li>
+          <li><a href="LeaveRequests.html">Leave Requests</a></li>
+          <li><a href="TeacherCardRequest.html">Card Requests</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+            <span class="link_name">Student Management</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+         
+          <li><a href="InsertStdData.html">Student Registration</a></li>
+          <li><a href="StudentRecord.html">Students Record</a></li>
+          <li><a href="StudentNewCardRequests.html">Card Requests</a></li>
+        </ul>
+      </li>
+    
+      <li>
+        <a href="securityOfficer.html">
+          <i class="fas fa-shield"></i>
+          <span class="link_name">Security Officer</span>
+        </a>
+      
+      </li>
+      <li>
+        <a href="map.html">
+          <i class="fas fa-map-marker-alt"></i>
+          <span class="link_name">Select School Area</span>
+        </a>
+      </li>
+      <li>
+    <div class="profile-details">
+      <div class="profile-content">
+        <img src="website_log.png" alt="profileImg">
+      </div>
+      <div class="name-job">
+        <div class="profile_name">Admin</div>
+        <div class="job">Log out</div>
+      </div>
+      <i class='bx bx-log-out' ></i>
+    </div>
+  </li>
+</ul>
+  </div>
+
+  <div class="main-content">
+
+    <section class="home-section">
+
+      <nav>
+        <div class="profile-details" style="width: 50px;  ">
+        <span class="admin_name">Attendance <i class="fas fa-user-check"></i></span>
+        </div>
+       
+      <!-- <div id="myDropdown" class="dropdown">
+         
+      </div> -->
+      <div class="logo-details">
+     
+      
+        <img src="website_log.png" alt="Website Logo" style="width: 50px; display: block; margin: 0 auto; ">
+  
+        <div>
+          <span style="display: block; text-align: center; color:black; font-weight: bold;">School Security System</span>
+    
+        </div>
+     
+        
+      </div>
+  
+        <div class="profile-details">
+            
+          <span class="admin_name">Admin Pannel <i class="fa fa-user-circle"></i>
+          </span>
+         
+        </div>
+  
+      </nav>
+
+      <div class="home-content">
+        <div class="container">
+         
+          <div class="filter-container">
+            <label for="dateFilter"></label>
+            <input type="date" id="dateFilter" value="">
+            <button onclick="filterAttendance()" style="margin-left: 10px;" id="Filter">Filter <i class="fa fa-filter"></i></button>
+          </div>
+          <table id="attendanceTable">
+            <thead>
+              <tr>
+             
+                <th>Teacher Name</th>
+                <th>Class</th>
+                <th>Attendance Status</th>
+                <th>Attendance Time</th>
+                <th>In Time</th>
+                <th>Out Time</th>
+                <!-- <th>Class Teacher</th> -->
+              </tr>
+            </thead>
+            <tbody id="attendanceBody"></tbody>
+          </table>
+        </div>
+        <div id="noRecordMessage" style="text-align: center; color: red; margin-top: 10px; display: none;"></div>
+
+      </div>
+     
+
+     
+  </div>
+  </section>
+  <script src="./scripts/sidebar.js"></script>
+  <script type="module">
+ 
+
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDCXvbE44rMmYlkSLMIsramC6tiBcLBNH4",
+      authDomain: "schoolsecuritysystemusin-4c8fa.firebaseapp.com",
+      databaseURL: "https://schoolsecuritysystemusin-4c8fa-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "schoolsecuritysystemusin-4c8fa",
+      storageBucket: "schoolsecuritysystemusin-4c8fa.appspot.com",
+      messagingSenderId: "58102931592",
+      appId: "1:58102931592:web:8b2a5aee4664b3df023f3d",
+      measurementId: "G-KTK6CHM7EF"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    // import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+    import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+    const db = getDatabase();
+    // Reference to the TeacherData node
+
+    // ... (Your existing script content) ...
+
+   
+
+    function filterAttendance() {
+     const selectedDateElement = document.getElementById('dateFilter');
+  const selectedDate = selectedDateElement.value;
+  const formattedSelectedDate = formatDate(selectedDate);
+
+  const attendanceBody = document.getElementById('attendanceBody');
+  attendanceBody.innerHTML = '';
+
+  const noRecordMessage = document.getElementById('noRecordMessage');
+  noRecordMessage.style.display = 'none';
+
+  const attendanceRef = ref(db, `AttendanceRecord/TeachersAttendance/${formattedSelectedDate}`);
+  const leaveAttendanceRef = ref(db, `TeachersLeaveAttendance/${formattedSelectedDate}`);
+
+  Promise.all([get(attendanceRef), get(leaveAttendanceRef)])
+    .then(results => {
+      const dateAttendanceSnapshot = results[0];
+      const leaveAttendanceSnapshot = results[1];
+
+      // Display records from TeachersAttendance table
+      if (dateAttendanceSnapshot.exists()) {
+        dateAttendanceSnapshot.forEach(teacherSnapshot => {
+          const teacherID = teacherSnapshot.key;
+          const teacherData = teacherSnapshot.val();
+
+          const row = attendanceBody.insertRow();
+        
+          row.insertCell(0).textContent = teacherData.name;
+          row.insertCell(1).textContent = teacherData.class;
+          row.insertCell(2).textContent = teacherData.attendanceStatus;
+          row.insertCell(3).textContent = teacherData.time;
+          row.insertCell(4).textContent = teacherData.inTime ?? "-";
+          row.insertCell(5).textContent = teacherData.outTime ?? "-";
+          // row.insertCell(7).innerHTML = teacherData.isTeacher === "yes" ? '<i class="fas fa-check" style="color: green;"></i>' : '<i class="fas fa-times" style="color: red;"></i>';
+        });
+      }
+
+      // Display records from TeachersLeaveAttendance table
+      if (leaveAttendanceSnapshot.exists()) {
+        leaveAttendanceSnapshot.forEach(teacherSnapshot => {
+          const teacherID = teacherSnapshot.key;
+          const teacherData = teacherSnapshot.val();
+
+          const row = attendanceBody.insertRow();
+         
+          row.insertCell(0).textContent = teacherData.name;
+          row.insertCell(1).textContent = teacherData.class;
+          row.insertCell(2).textContent = teacherData.attendanceStatus;
+          row.insertCell(3).textContent = teacherData.time;
+          row.insertCell(4).textContent = teacherData.inTime ?? "-";
+          row.insertCell(5).textContent = teacherData.outTime ?? "-";
+          // row.insertCell(7).innerHTML = teacherData.isTeacher === "yes" ? '<i class="fas fa-check" style="color: green;"></i>' : '<i class="fas fa-times" style="color: red;"></i>';
+        });
+      }
+
+      if (!dateAttendanceSnapshot.exists() && !leaveAttendanceSnapshot.exists()) {
+        noRecordMessage.textContent = `No attendance records for ${selectedDate}`;
+        noRecordMessage.style.display = 'block';
+      }
+    })
+    .catch(error => {
+      console.error('Error retrieving attendance data:', error);
+    });
+}
+
+function formatDate(inputDate) {
+  const dateParts = inputDate.split('-');
+  const day = ('0' + parseInt(dateParts[2], 10)).slice(-2);  // Add leading zero and take the last two characters
+  const month = ('0' + parseInt(dateParts[1], 10)).slice(-2);  // Add leading zero and take the last two characters
+
+  return `${day}-${month}-${dateParts[0]}`;
+}
+
+function getCurrentDate() {
+        const today = new Date();
+        const day = today.getDate().toString().padStart(2, '0');
+        const month = (today.getMonth() + 1).toString().padStart(2, '0');
+        const year = today.getFullYear();
+        return `${year}-${month}-${day}`;
+      }
+ 
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+   
+      document.getElementById('dateFilter').value = getCurrentDate();
+      filterAttendance();
+
+
+      const filterButton = document.getElementById('Filter');
+      filterButton.addEventListener('click', function () {
+        filterAttendance();
+        const currentLocation = window.location.href;
+        const navLinks = document.querySelectorAll(".nav-links li a");
+
+        navLinks.forEach((link) => {
+          if (link.href === currentLocation) {
+            link.classList.add("active");
+          }
+        });
+      
+      });
+      
+      const dropdownButtons = document.querySelectorAll('.nav-dropdown-btn');
+    dropdownButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            const content = this.nextElementSibling;
+            const isOpen = content.style.display === 'block';
+            content.style.display = isOpen ? 'none' : 'block';
+
+            // Store the state in sessionStorage
+            const dropdownId = this.getAttribute('data-dropdown-id');
+            sessionStorage.setItem(`dropdown-${dropdownId}`, isOpen ? 'closed' : 'open');
+        });
+
+        // Check the sessionStorage to set the initial state
+        const dropdownId = button.getAttribute('data-dropdown-id');
+        const storedState = sessionStorage.getItem(`dropdown-${dropdownId}`);
+        if (storedState === 'open') {
+            const content = button.nextElementSibling;
+            content.style.display = 'block';
+            
+        }
+    });
+
+    });
+    
+
+  </script>
+
+</body>
+
+</html>

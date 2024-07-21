@@ -1,0 +1,469 @@
+{
+  "AttendanceRecord": {
+    "StudentAttendance": [
+      null,
+      {
+        "26-11-2023": {
+          "245132143196": {
+            "attendanceStatus": "Present",
+            "class": "1",
+            "date": "26-11-2023",
+            "fathercnic": "12101-1683345-3",
+            "firstName": "Roman",
+            "id": 245132143196,
+            "lastName": "Baloch",
+            "teachername": "kashif Inayat",
+            "time": "1:49 AM",
+            "type": "Manual"
+          },
+          "53158137196": {
+            "attendanceStatus": "Absent",
+            "class": "1",
+            "date": "26-11-2023",
+            "fathercnic": "38301-8321773-3",
+            "firstName": "Noman",
+            "id": 53158137196,
+            "lastName": "Khan",
+            "teachername": "kashif Inayat",
+            "time": "1:49 AM",
+            "type": "Manual"
+          }
+        },
+        "27-11-2023": {
+          "245132143196": {
+            "attendanceStatus": "Present",
+            "class": "1",
+            "date": "27-11-2023",
+            "fathercnic": "12101-1683345-3",
+            "firstName": "Roman",
+            "id": 245132143196,
+            "lastName": "Baloch",
+            "teachername": "kashif Inayat",
+            "time": "11:24 PM"
+          },
+          "53158137196": {
+            "attendanceStatus": "Absent",
+            "class": "1",
+            "date": "27-11-2023",
+            "fathercnic": "38301-8321773-3",
+            "firstName": "Noman",
+            "id": 53158137196,
+            "lastName": "Khan",
+            "teachername": "kashif Inayat",
+            "time": "11:24 PM"
+          }
+        },
+        "28-11-2023": {
+          "53158137196": {
+            "attendanceStatus": "Leave",
+            "class": "1",
+            "date": "28-11-2023",
+            "fathercnic": "38301-8321773-3",
+            "firstName": "Noman",
+            "id": "53158137196",
+            "lastName": "Khan",
+            "parentID": "URB39EmdFSf5ftmwcVdimPxVWtR2",
+            "parentName": "Iftikhar  Khan"
+          }
+        }
+      },
+      {
+        "30-11-2023": {
+          "692140196": {
+            "attendanceStatus": "Leave",
+            "class": "2",
+            "date": "30-11-2023",
+            "firstName": "Faheem",
+            "id": "692140196",
+            "lastName": "Ashraf",
+            "parentCNIC": "38301-8321773-3",
+            "parentID": "URB39EmdFSf5ftmwcVdimPxVWtR2",
+            "parentName": "Iftikhar  Khan"
+          }
+        }
+      }
+    ],
+    "TeachersAttendance": {
+      "26-11-2023": {
+        "16012920332": {
+          "attendanceStatus": "present",
+          "class": "1",
+          "date": "26-11-2023",
+          "id": 16012920332,
+          "isTeacher": "yes",
+          "name": "kashif Inayat",
+          "time": "1:49 AM",
+          "uid": "Dgz5DZm6CpSCP3C9Wip45zadLAN2"
+        }
+      },
+      "27-11-2023": {
+        "16012920332": {
+          "attendanceStatus": "present",
+          "class": "1",
+          "date": "27-11-2023",
+          "id": 16012920332,
+          "isTeacher": "yes",
+          "name": "kashif Inayat",
+          "time": "11:24 PM",
+          "uid": "Dgz5DZm6CpSCP3C9Wip45zadLAN2"
+        }
+      }
+    }
+  },
+  "Authorized Card Scanned": {
+    "27-11-2023": {
+      "27-11-2023 16012920332": {
+        "cardID": "16012920332",
+        "date": "27-11-2023",
+        "time": "02:38:54"
+      },
+      "27-11-2023 245132143196": {
+        "cardID": "245132143196",
+        "date": "27-11-2023",
+        "time": "02:38:32"
+      },
+      "27-11-2023 53158137196": {
+        "cardID": "53158137196",
+        "date": "27-11-2023",
+        "time": "02:37:43"
+      },
+      "27-11-2023 692140196": {
+        "cardID": "692140196",
+        "date": "27-11-2023",
+        "time": "02:38:47"
+      }
+    },
+    "28-11-2023": {
+      "32323223": {
+        "cardID": 16012920332,
+        "date": "28-11-2023",
+        "time": "03:34:55"
+      }
+    }
+  },
+  "ClassRoom": [
+    null,
+    {
+      "ClassTeacher": {
+        "16012920332": {
+          "Email": "inayatkashif676@gmail.com",
+          "ID": 16012920332,
+          "firstName": "kashif",
+          "lastName": "Inayat",
+          "password": "kashif123"
+        }
+      },
+      "Students": {
+        "245132143196": {
+          "ID": 245132143196,
+          "cnic": "12101-1683345-3",
+          "firstName": "Roman",
+          "lastName": "Baloch"
+        },
+        "53158137196": {
+          "ID": 53158137196,
+          "cnic": "38301-8321773-3",
+          "firstName": "Noman",
+          "lastName": "Khan"
+        }
+      }
+    },
+    {
+      "ClassTeacher": {
+        "14923027200": {
+          "Email": "zahidkhanmsd5@gmail.com",
+          "ID": 14923027200,
+          "firstName": "Tahir",
+          "lastName": "Malik",
+          "password": "123456"
+        }
+      },
+      "Students": {
+        "692140196": {
+          "ID": 692140196,
+          "cnic": "38301-8321773-3",
+          "firstName": "Faheem",
+          "lastName": "Ashraf"
+        }
+      }
+    }
+  ],
+  "FCMToken": {
+    "36tgyIhhPfPGHWZyQ3remoAsrW63": {
+      "fa3wyDIrSMGAmvJJ7gichi:APA91bFzaksmPe7iX7eeTDFSkYrPkEojLiRjJ-wdgdCnWoOs2nPq1LZ3Tq2hw7WsCwrGXB4l6RQJliPO1N35eS-0FuBfdulB-hSTK-WjEYXdFUWBO99Hnu4O7j5RdV-V0rzos4XTQTNv": ""
+    },
+    "Dgz5DZm6CpSCP3C9Wip45zadLAN2": {
+      "d5eMomLKS0WZGfvuwF5NEP:APA91bFuwkwNSjuqALxYF-_iZ76IbLa-mkC4kONSWUcaTll6_HCcUWNr_pFLabLgC68yQBMMr-f1RW1T7PkQVWABrxIMHiz40JqoLoL-09ilg3teItcodOj3mERQqgahuWAPTi7oTKTJ": "",
+      "dV4OieIJTpysJxQEYFQNJv:APA91bEATnU8lgWa55YK8dtoguqs3UqEQe-PDyfkmzjGSe2wByIdlnLhcntJVcZYis_DcuqseKCpuX6-Mwg3G9hZ7TNAe7b5oMBy1MsIetvos2DN9v1HN6C7yUmokBlAC-EqN59b9c7d": ""
+    },
+    "URB39EmdFSf5ftmwcVdimPxVWtR2": {
+      "d5eMomLKS0WZGfvuwF5NEP:APA91bFuwkwNSjuqALxYF-_iZ76IbLa-mkC4kONSWUcaTll6_HCcUWNr_pFLabLgC68yQBMMr-f1RW1T7PkQVWABrxIMHiz40JqoLoL-09ilg3teItcodOj3mERQqgahuWAPTi7oTKTJ": ""
+    }
+  },
+  "FatherData": {
+    "36tgyIhhPfPGHWZyQ3remoAsrW63": {
+      "address": "COMSAT Abbottabad ",
+      "cnic": "12101-1683345-3",
+      "email": "khanchannel900@gmail.com",
+      "firstname": "Ghani",
+      "lastname": "Khan",
+      "phonenumber": "03494387868"
+    },
+    "URB39EmdFSf5ftmwcVdimPxVWtR2": {
+      "address": "Fafa",
+      "cnic": "38301-8321773-3",
+      "email": "callmeniazi66@gmail.com",
+      "firstname": "Iftikhar ",
+      "lastname": "Khan",
+      "phonenumber": "03449514224"
+    }
+  },
+  "LeaveRequests": {
+    "26-11-2023": {
+      "14923027200": {
+        "ID": 14923027200,
+        "Name": "Tahir Malik",
+        "applyDate": "26-11-2023",
+        "class": "2",
+        "isTeacher": "yes",
+        "reason": "Dil nahi kar raha",
+        "singleDay": "27-11-2023",
+        "status": ""
+      },
+      "16012920332": {
+        "ID": 16012920332,
+        "Name": "kashif Inayat",
+        "applyDate": "26-11-2023",
+        "class": "1",
+        "isTeacher": "yes",
+        "reason": "Nsbsg",
+        "singleDay": "2-12-2023",
+        "status": ""
+      }
+    },
+    "27-11-2023": {
+      "16012920332": {
+        "ID": 16012920332,
+        "Name": "kashif Inayat",
+        "applyDate": "27-11-2023",
+        "class": "1",
+        "isTeacher": "yes",
+        "reason": "I Am Sick",
+        "singleDay": "29-11-2023",
+        "status": ""
+      }
+    }
+  },
+  "NewCardRequest": {
+    "2023-11-26": {
+      "16012920332": {
+        "Class": "1",
+        "ID": 16012920332,
+        "Name": "kashif Inayat",
+        "applyDate": "2023-11-26",
+        "reason": "Yhggg",
+        "status": ""
+      }
+    },
+    "2023-11-27": {
+      "16012920332": {
+        "Class": "1",
+        "ID": 16012920332,
+        "Name": "kashif Inayat",
+        "applyDate": "2023-11-27",
+        "reason": "I lost it 😔hgg",
+        "status": "pending"
+      }
+    }
+  },
+  "NewCardRequests": {
+    "Parents": {
+      "36tgyIhhPfPGHWZyQ3remoAsrW63": {
+        "26-11-2023": {
+          "245132143196": {
+            "applyDate": "26-11-2023",
+            "childName": "Roman Baloch",
+            "parentID": "36tgyIhhPfPGHWZyQ3remoAsrW63",
+            "parentName": "Ghani Khan",
+            "reason": "Firangu la gaya",
+            "status": "pending"
+          }
+        }
+      },
+      "URB39EmdFSf5ftmwcVdimPxVWtR2": {
+        "25-11-2023": {
+          "21113142196": {
+            "applyDate": "25-11-2023",
+            "childClass": "1",
+            "childName": "Noman Khan",
+            "parentCNIC": "38301-8321773-3",
+            "parentID": "URB39EmdFSf5ftmwcVdimPxVWtR2",
+            "parentName": "Iftikhar  Khan",
+            "reason": "He Lost it",
+            "status": "accepted"
+          }
+        },
+        "26-11-2023": {
+          "692140196": {
+            "applyDate": "26-11-2023",
+            "childClass": "2",
+            "childName": "Faheem Ashraf",
+            "parentCNIC": "38301-8321773-3",
+            "parentID": "URB39EmdFSf5ftmwcVdimPxVWtR2",
+            "parentName": "Iftikhar  Khan",
+            "reason": "Gssg",
+            "status": "pending"
+          }
+        }
+      }
+    }
+  },
+  "SecurityOfficerProfile": {
+    "email": "topsolutionmaster@gmail.com",
+    "firstName": "Naeem",
+    "lastName": "Marwat",
+    "uid": "9UvRlwEfkmaQERm8uNIA4XJg14C3"
+  },
+  "StudentData": {
+    "12101-1683345-3": {
+      "245132143196": {
+        "ID": 245132143196,
+        "cName": "1",
+        "cnic": "12101-1683345-3",
+        "fName": "Ghani Khan",
+        "firstname": "Roman",
+        "gen": "male",
+        "lastname": "Baloch"
+      }
+    },
+    "38301-8321773-3": {
+      "692140196": {
+        "ID": 692140196,
+        "cName": "2",
+        "cnic": "38301-8321773-3",
+        "fName": "Iftikhar Khan",
+        "firstname": "Faheem",
+        "gen": "male",
+        "lastname": "Ashraf"
+      },
+      "53158137196": {
+        "ID": 53158137196,
+        "cName": "1",
+        "cnic": "38301-8321773-3",
+        "fName": "Iftikhar Khan",
+        "firstname": "Noman",
+        "gen": "male",
+        "lastname": "Khan"
+      }
+    }
+  },
+  "StudentsLeaveRequests": {
+    "36tgyIhhPfPGHWZyQ3remoAsrW63": {
+      "245132143196,26-11-2023": {
+        "applyDate": "26-11-2023",
+        "childID": "245132143196",
+        "class": "1",
+        "firstName": "Roman",
+        "isSingleDay": "28-11-2023",
+        "lastName": "Baloch",
+        "parentCNIC": "12101-1683345-3",
+        "parentID": "36tgyIhhPfPGHWZyQ3remoAsrW63",
+        "parentName": "Ghani Khan",
+        "reason": "urgent Piece of Work At Home",
+        "status": "pending"
+      },
+      "245132143196,27-11-2023": {
+        "applyDate": "27-11-2023",
+        "endDate": "29-11-2023",
+        "firstName": "Roman",
+        "lastName": "Baloch",
+        "startDate": "27-11-2023",
+        "status": "pending"
+      }
+    },
+    "URB39EmdFSf5ftmwcVdimPxVWtR2": {
+      "53158137196,26-11-2023": {
+        "applyDate": "26-11-2023",
+        "childID": "53158137196",
+        "class": "1",
+        "firstName": "Noman",
+        "isSingleDay": "30-11-2023",
+        "lastName": "Khan",
+        "parentCNIC": "38301-8321773-3",
+        "parentID": "URB39EmdFSf5ftmwcVdimPxVWtR2",
+        "parentName": "Iftikhar  Khan",
+        "reason": "Gzhsg",
+        "status": "pending"
+      },
+      "692140196,26-11-2023": {
+        "applyDate": "26-11-2023",
+        "childID": "692140196",
+        "class": "2",
+        "endDate": "7-12-2023",
+        "firstName": "Faheem",
+        "lastName": "Ashraf",
+        "parentCNIC": "38301-8321773-3",
+        "parentID": "URB39EmdFSf5ftmwcVdimPxVWtR2",
+        "parentName": "Iftikhar  Khan",
+        "reason": "Fuck",
+        "startDate": "1-12-2023",
+        "status": "pending"
+      }
+    }
+  },
+  "TeacherData": {
+    "14923027200": {
+      "Email": "zahidkhanmsd5@gmail.com",
+      "ID": 14923027200,
+      "class": "2",
+      "classTeacher": "yes",
+      "firstname": "Tahir",
+      "lastname": "Malik",
+      "password": "123456",
+      "uid": "If5csW6yTqgh3l4VfuzQcDZOUqG3"
+    },
+    "16012920332": {
+      "Email": "inayatkashif676@gmail.com",
+      "ID": 16012920332,
+      "class": "1",
+      "classTeacher": "yes",
+      "firstname": "kashif",
+      "lastname": "Inayat",
+      "password": "kashif123",
+      "uid": "Dgz5DZm6CpSCP3C9Wip45zadLAN2"
+    }
+  },
+  "Unauthorized Card Scanned": {
+    "2023-11-27,02:10:52": {
+      "cardID": "514527200",
+      "date": "2023-11-27",
+      "time": "02:10:52"
+    },
+    "27-11-2023": {
+      "27-11-2023 514527200": {
+        "cardID": "514527200",
+        "date": "27-11-2023",
+        "time": "02:38:22"
+      }
+    }
+  },
+  "UnauthorizedCardScanned": {
+    "2023-11-26,01:18:24": {
+      "cardID": "514527200",
+      "date": "2023-11-26",
+      "time": "01:18:24"
+    },
+    "2023-11-26,01:18:44": {
+      "cardID": "245132143196",
+      "date": "2023-11-26",
+      "time": "01:18:44"
+    }
+  },
+  "allowed-card-ids": {
+    "692140196": "allowed",
+    "14923027200": "allowed",
+    "16012920332": "allowed",
+    "245132143196": "allowed",
+    "53158137196": "allowed"
+  }
+}

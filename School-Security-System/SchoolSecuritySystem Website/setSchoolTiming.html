@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Timings</title>
+    <link rel="stylesheet" href="Dashboard.css" />
+  <link rel="stylesheet" href="./styles/sidebar.css" />
+  <!-- Boxicons CDN Link -->
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="./styles/Dashboard.css">
+  <link rel="stylesheet" href="styles.css">
+    <style>
+    
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 20px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    input[type="time"] {
+      font-size: 16px; /* Increase font size for time inputs */
+ 
+    }
+
+  
+
+        #app {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+  <div class="sidebar">
+    
+    <ul class="nav-links">
+      <li>
+        <a href="Dashboard.html" >
+          <i class="bx bx-grid-alt"></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+       
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span class="link_name">Teacher Management</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Category</a></li>
+          <li><a href="insertTeacherData.html">Teacher Registration</a></li>
+          <li><a href="teacherRecord.html">Teachers Record</a></li>
+          <li><a href="Attendance.html">Attendance</a></li>
+          <li><a href="ManuallyAttendanceMarkStd.html">Manual Attenedance</a></li>
+          <li><a href="LeaveRequests.html">Leave Requests</a></li>
+          <li><a href="TeacherCardRequest.html">Card Requests</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+            <span class="link_name">Student Management</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+         
+          <li><a href="InsertStdData.html">Student Registration</a></li>
+          <li><a href="StudentRecord.html">Students Record</a></li>
+          <li><a href="StudentNewCardRequests.html">Card Requests</a></li>
+        </ul>
+      </li>
+    
+      <li>
+        <a href="securityOfficer.html">
+          <i class="fas fa-shield"></i>
+          <span class="link_name">Security Officer</span>
+        </a>
+      
+      </li>
+      <li>
+        <a href="setSchoolTiming.html" class="active">
+          <i class="fas fa-clock"></i>
+          <span class="link_name">Set School Timing</span>
+        </a>
+      </li>
+      <li>
+        <a href="map.html">
+          <i class="fas fa-map-marker-alt"></i>
+          <span class="link_name">Select School Area</span>
+        </a>
+      </li>
+      <li>
+      </ul>
+      <a href="index.html" >
+        <div class="profile-details">
+          <div class="profile-content">
+            <img src="website_log.png" alt="profileImg">
+          </div>
+          <div class="name-job">
+            <div class="profile_name">Admin</div>
+            <div class="job">Log out</div>
+          </div>
+          <i class='bx bx-log-out' style="color: #fff; font-size: 30px;"></i>
+        </div>
+      </a>
+
+  </div>
+    
+      
+     
+      <div class="main-content">
+    
+        <section class="home-section">
+         
+        <nav>
+          <div class="profile-details" style="width: 50px;  ">
+          <span class="admin_name">School Time Management <i class="fas fa-clock"></i></span>
+          </div>
+        
+       
+       
+        <div class="logo-details">
+         
+          
+          <img src="website_log.png" alt="Website Logo" style="width: 50px; display: block; margin: 0 auto; ">
+    
+          <div>
+            <span style="display: block; text-align: center; color:black; font-weight: bold;">School Security System</span>
+      
+          </div>
+       
+          
+        </div>
+      
+          <div class="profile-details">
+              
+            <span class="admin_name">Admin Pannel <i class="fa fa-user-circle"></i>
+            </span>
+           
+          </div>
+    
+        </nav>
+        <div class="home-content">
+        <div class="enterdetailheader">
+    <div class="form-container">
+        <h1 style="text-align: center;">School Timing</h1>
+        <div id="form-container">
+        <label for="openingTime" style="font-weight: bold; color: black;">Opening Time:</label>
+        <input type="time" id="openingTime" required>
+        <label for="closingTime" style="font-weight: bold; color: black;">Closing Time:</label>
+        <input type="time" id="closingTime" required>
+        <button id="saveButton"  class="insertTec-button-Style">Save Timings</button>
+    </div>
+    </div>
+</div>
+    </div>
+</section>
+</div>
+<script src="./scripts/sidebar.js"></script>
+    <script type="module">
+        // Import Firebase modules dynamically using the import statement
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js';
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js';
+        import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js';
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCXvbE44rMmYlkSLMIsramC6tiBcLBNH4",
+            authDomain: "schoolsecuritysystemusin-4c8fa.firebaseapp.com",
+            databaseURL: "https://schoolsecuritysystemusin-4c8fa-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "schoolsecuritysystemusin-4c8fa",
+            storageBucket: "schoolsecuritysystemusin-4c8fa.appspot.com",
+            messagingSenderId: "58102931592",
+            appId: "1:58102931592:web:8b2a5aee4664b3df023f3d",
+            measurementId: "G-KTK6CHM7EF"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+
+        // Function to save school timings to the database
+        function saveTimings() {
+            const openingTime = document.getElementById("openingTime").value;
+            const closingTime = document.getElementById("closingTime").value;
+
+            // Save timings to the 'timings' node in the database
+            const database = getDatabase(app);
+            const schoolRef = ref(database, 'SchoolTiming');
+
+            set(schoolRef, {
+                openingTime: openingTime,
+                closingTime: closingTime
+            });
+
+            alert("Timings saved successfully!");
+        }
+
+        // Attach click event using addEventListener
+        document.getElementById("saveButton").addEventListener("click", saveTimings);
+
+       
+
+    
+    </script>
+</body>
+
+</html>

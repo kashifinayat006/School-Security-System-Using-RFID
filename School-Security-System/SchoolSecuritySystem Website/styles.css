@@ -1,0 +1,290 @@
+
+
+#form-container {
+  background-color: #f9f9f9; /* Light gray background */
+  border: 1px solid #e0e0e0; /* Light gray border */
+  padding: 20px;
+  padding-top: 10px;
+  
+  border-radius: 30px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+  width: 860px;
+  max-width: 100%;
+  margin: 0 auto;
+  color: #333; /* Dark text color */
+  font-family: Arial, sans-serif;
+ 
+}
+#form-container:hover {
+  background-color: #FFFAF0; /* Light gray background */
+ 
+ 
+}
+
+
+
+
+
+
+
+
+/* Style focused text inputs and select */
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus,
+.form-group select:focus {
+  
+  border-color: #550A35; /* Blue border color on focus */
+  box-shadow: #FFFAF0; /* Light blue shadow on focus */
+}
+
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  flex-basis: 100px;
+  text-align: right;
+  margin-right: 10px;
+
+  font-weight: bold;
+
+
+}
+
+input[type="text"],
+select {
+ 
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+input[type="password"],
+select {
+  width: 100%;
+  padding: 1px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* input[type="text"]:focus,
+select:focus {
+  border-color: #4caf50;
+  box-shadow: 0px 0px 5px rgba(76, 175, 80, 0.3);
+} */
+
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+  flex-basis: 200px;
+}
+
+
+
+#idList {
+  text-align: center;
+  padding-left: 20px;
+  list-style-type: none;
+
+}
+
+.id-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.id-list-item button {
+  margin-left: 10px;
+}
+
+
+
+
+/* InsertStudentd data Btn styling */
+.enterdetailheader{
+  
+  background-color:#FFFAF0;
+  border: 1px solid #ccc;
+  padding-top: 15px;
+  border-radius: 80px;
+  box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.1);
+  width: 760px;
+  max-width: 100%;
+  margin:auto;
+  transition: background-color 0.9s ease, transform 0.9s ease; /* Added transition here */
+  transform: translateY(0); /* Initial state */
+}
+
+.enterdetailheader:hover {
+  background-color:#550A35;
+  color: white;
+  transition: background-color 0.9s ease, transform 0.9s ease;
+  transform: translateY(-10px);
+ 
+ 
+}
+
+.Stdbutton{
+
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  transition: background-color 0.9s ease, transform 0.9s ease; /* Added transition here */
+  transform: translateY(0); /* Initial state */
+
+  padding: 8px 20px;
+  background-color:  #0A2558;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+
+
+}
+
+.Stdbutton:hover {
+  background-color: #550A35;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transform: scale(1.05);
+}
+
+.insertTec-button-Style{
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  transition: background-color 0.9s ease, transform 0.9s ease; /* Added transition here */
+  transform: translateY(0); /* Initial state */
+  padding: 8px 20px;
+  background-color:  #0A2558;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  /* transition: background-color 0.3s; */
+
+}
+
+.insertTec-button-Style:hover {
+  background-color: #550A35;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transform: scale(1.05);
+}
+
+
+   .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  /* Hide the default radio button */
+  input[type="radio"] {
+    display: none;
+  }
+
+  /* Style the radio button labels */
+  input[type="radio"]+label {
+    display: block;
+    cursor: pointer;
+   
+    padding-top: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0.5px solid  rgb(10, 164, 236);
+    /* Add a default border */
+  }
+
+  /* Style the selected radio button label */
+  input[type="radio"]:checked+label {
+    background-color: #550A35;
+    color: #fff;
+
+    border: 1px solid  rgb(10, 164, 236);
+    /* Change the border color on selection */
+  }
+
+  /* Style radio button labels for better user interaction */
+  input[type="radio"]+label:hover {
+    background-color: #550A35;
+    color: white;
+    transition: background-color 0.9s ease, transform 0.9s ease; /* Added transition here */
+    transform: translateY(0); /* Initial state */
+  }
+
+  /* InsertTeacher data Btn Styling  */
+
+/* Style the radio button labels */
+.form-group .radio-group label {
+  
+  display: inline-block; /* Display labels in a single line */
+  white-space: nowrap; /* Prevent text from wrapping */
+  cursor: pointer;
+
+  padding: 1px 20px;
+  /* border: 2px solid #ccc; */
+  border-radius: 5px;
+  transition: all 0.3s ease; /* Add a smooth transition effect */
+ 
+}
+
+
+
+
+
+
+
+/* selection of class styling*/
+.form-group {
+  display: flex;
+  align-items: center;
+  /* Vertically center elements */
+}
+
+.label-style {
+  margin-right: 0px;
+  width: 100px;
+  display: inline-block;
+}
+
+/* Adjust the select box styling as needed */
+#enterClass {
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 207px;
+  /* Adjust the width of the select box */
+}
+button#openPopup {
+  padding: 4px 20px;
+background-color:  #0A2558;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+transition: background-color 0.9s ease, transform 0.9s ease; /* Added transition here */
+transform: translateY(0); /* Initial state */
+}
+
+button#openPopup:hover {
+background-color: #550A35;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+transform: scale(1.05);
+}

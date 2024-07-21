@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="editstudent.css">
+    <script src="https://cdn.jsdelivr.net/npm/spin.js@2.3.2/spin.min.js"></script>
+    <link rel="stylesheet" href="phpcode/styles2.css">
+
+</head>
+
+<body>
+    <!-- ////////////////// -->
+    <div class="tick" id="tick">
+        <div class="tick-mark">&#10004;</div>
+        <p style="display: contents;" class="success-message">Card Scanned Successfully</p>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="popup">
+        <button class="close-button" id="closePopup">&times;</button>
+        <div class="card">
+            <div class="scan-line"></div>
+            <div class="card-details">
+                <h1>Card Scanning</h1>
+                <p style="display: contents;">Place your card on the scanner</p>
+
+            </div>
+        </div>
+    </div>
+    <!-- ////////////////// -->
+    <div class="form-container">
+
+
+        <div class="form-group">
+            <!-- <label for="newID">New ID:</label>
+            <input id="newID" type="text"> -->
+            <label for="enterID">Previous ID</label>
+
+            <p id="enterID" style="
+      padding: 5px;
+      width: 15%;
+      border-radius: 4px; font-size: 15;
+      background-color: #ff9900;
+    color: white;
+    text-align: center;">--</p>
+            <button id="openPopup">Change ID</button>
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="updateFirstName">Previous First Name:</label>
+            <input id="updateFirstName" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="updateLastName">Previous Last Name:</label>
+            <input id="updateLastName" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="updateEmail">Previous Email</label>
+            <input id="updateEmail" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="updateClassTeacher">Class Teacher:</label>
+            <input id="updateClassTeacher" type="text" readonly>
+            <button id="makeClassTeacherBtn">Make Class Teacher</button>
+            <select id="selectClassDropdown" style="display: none;">
+                <option value="">Select Class (0-10)</option>
+                <option value="0">Class 0</option>
+                <option value="1">Class 1</option>
+                <option value="2">Class 2</option>
+                <option value="3">Class 3</option>
+                <option value="4">Class 4</option>
+                <option value="5">Class 5</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+            </select>
+            <button id="deselectClassBtn" style="display: none;">Deselect</button>
+        </div>
+        <div class="form-group" id="classLabelAndField" style="display: none;">
+            <label for="updateClassName">Previous Class Name:</label>
+            <input id="updateClassName" type="text" readonly>
+        </div>
+        <div id="removeTeacherSection" style="display: none;">
+            <p>Want to remove this teacher from class teacher?</p>
+            <button id="removeClassTeacher">Remove</button>
+        </div>
+        <br>
+        <button id="update" class="update-button">UPDATE</button>
+    </div>
+
+
+
+
+
+    <!-- ... (Other fields) ... -->
+    <script type="module" src="phpcode/script2.js"> </script>
+
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCXvbE44rMmYlkSLMIsramC6tiBcLBNH4",
+            authDomain: "schoolsecuritysystemusin-4c8fa.firebaseapp.com",
+            databaseURL: "https://schoolsecuritysystemusin-4c8fa-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "schoolsecuritysystemusin-4c8fa",
+            storageBucket: "schoolsecuritysystemusin-4c8fa.appspot.com",
+            messagingSenderId: "58102931592",
+            appId: "1:58102931592:web:8b2a5aee4664b3df023f3d",
+            measurementId: "G-KTK6CHM7EF"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        // import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+        import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+        const db = getDatabase();
+        //   const updateID = document.querySelector("#updateID");
+        const updateBtn = document.querySelector("#update");
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const queryParams = new URLSearchParams(window.location.search);
+
+            const editID = document.getElementById("enterID");
+            const editFirstName = document.getElementById("updateFirstName");
+            const editLastName = document.getElementById("updateLastName");
+            const editEmail = document.getElementById("updateEmail");
+            const editClass = document.getElementById("updateClassName");
+            const editClassTeacher = document.getElementById("updateClassTeacher");
+            const removeTeacherSection = document.getElementById("removeTeacherSection");
+            const removeClassTeacherBtn = document.getElementById("removeClassTeacher");
+            const classLabelAndField = document.getElementById("classLabelAndField");
+            const makeClassTeacherBtn = document.getElementById("makeClassTeacherBtn");
+            const selectClassDropdown = document.getElementById("selectClassDropdown");
+
+            editID.innerHTML = queryParams.get("id");
+            editFirstName.value = queryParams.get("firstName");
+            editLastName.value = queryParams.get("lastName");
+            editEmail.value = queryParams.get("email");
+            editClass.value = queryParams.get("className");
+            editClassTeacher.value = queryParams.get("classTeacher");
+            editClassTeacher.readOnly = true;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+            function toggleRemoveSection() {
+                if (editClassTeacher.value === "Yes") {
+                    removeTeacherSection.style.display = "block";
+                    classLabelAndField.style.display = "block";
+                    makeClassTeacherBtn.style.display = "none";
+                } else {
+                    removeTeacherSection.style.display = "none";
+                    classLabelAndField.style.display = "none";
+                    makeClassTeacherBtn.style.display = "block";
+                }
+            }
+
+            toggleRemoveSection();
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+            function toggleDeselectButton() {
+                const selectedClass = selectClassDropdown.value;
+                const classTeacherValue = editClassTeacher.value;
+
+                if (selectedClass && classTeacherValue === "Yes") {
+                    deselectClassBtn.style.display = "block";
+                } else {
+                    deselectClassBtn.style.display = "none";
+                }
+            }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            removeClassTeacherBtn.addEventListener("click", () => {
+                const confirmRemove = confirm("Are you sure you want to remove this teacher from class teacher?");
+                if (confirmRemove) {
+                    const newID = parseInt(editID.textContent);
+                    const previousID = queryParams.get("id");
+                    const newClass = editClass.value;
+                    const previousClass = queryParams.get("className");
+                    const isClassTeacher = editClassTeacher.value === "Yes";
+
+                    if (isClassTeacher) {
+                        // If the teacher is a class teacher, remove the record from the classroom table
+                        remove(ref(db, "ClassRoom/" + newClass + "/ClassTeacher/" + previousID))
+                            .then(() => {
+                                // Update the record as "No" in TeacherData table
+                                return set(ref(db, "TeacherData/" + previousID + "/classTeacher"), "No");
+                            })
+                            .then(() => {
+                                // Update the class field in TeacherData to an empty string
+                                return set(ref(db, "TeacherData/" + previousID + "/class"), "");
+                            })
+                            .then(() => {
+                                // Update the classTeacher field in TeacherData to "No"
+                                return set(ref(db, "TeacherData/" + previousID + "/classTeacher"), "No");
+                            })
+                            .then(() => {
+                                // Clear the class value in the editClass field
+                                editClass.value = "";
+                                editClassTeacher.value = "No"; // Set classTeacher value to "No"
+                                alert("Teacher removed from class teacher");
+                                toggleRemoveSection();
+                                editClass.style.display = "none";
+                            })
+                            .catch((error) => {
+                                console.error("Error removing teacher:", error);
+                            });
+                    }
+                    else {
+                        alert("This teacher is not currently a class teacher.");
+                        toggleRemoveSection();
+                    }
+                }
+            });
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            // Handle class selection from the dropdown
+            selectClassDropdown.addEventListener("change", toggleDeselectButton);
+
+            // Handle "Deselect" button click event
+            const deselectClassBtn = document.getElementById("deselectClassBtn");
+
+
+            deselectClassBtn.addEventListener("click", () => {
+                const teacherID = queryParams.get("id");
+                const selectedClass = selectClassDropdown.value;
+
+                // Check if a class is selected
+                if (selectedClass) {
+                    const confirmDeselect = confirm("Are you sure you want deselect");
+                    if (confirmDeselect) {
+                        // Remove the class from the TeacherData table and set class teacher value to "No"
+                        set(ref(db, "TeacherData/" + teacherID + "/class"), "")
+                            .then(() => {
+                                return set(ref(db, "TeacherData/" + teacherID + "/classTeacher"), "No");
+                            })
+                            .then(() => {
+                                // Clear the class value and set class teacher value to "No"
+                                editClass.value = "";
+                                editClassTeacher.value = "No";
+                                selectClassDropdown.style.display = "none";
+                                deselectClassBtn.style.display = "none";
+                                makeClassTeacherBtn.style.display = "block";
+
+                                // alert("Teacher removed from the selected class.");
+                            })
+                            .catch((error) => {
+                                console.error("Error deselecting teacher:", error);
+                            });
+                    }
+                }
+            });
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+          makeClassTeacherBtn.addEventListener("click", () => {
+    // Show the select class dropdown and hide the makeClassTeacherBtn
+    selectClassDropdown.style.display = "block";
+    makeClassTeacherBtn.style.display = "none";
+
+    // Set the classTeacherValue to "Yes" in the HTML page
+    editClassTeacher.value = "Yes";
+
+    // Handle class selection from the dropdown
+    selectClassDropdown.addEventListener("change", () => {
+        const selectedClass = selectClassDropdown.value;
+
+        // Get the teacher's ID from the URL query parameters
+        const teacherID = queryParams.get("id");
+
+        // Update the class value in the HTML page
+        editClass.value = selectedClass; 
+    });
+});
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+            function redirectToTeacherRecord() {
+                window.location.href = "teacherrecord.html";
+            }
+//////////////////////////////////////////////////////////////////////////////////////////////////
+            function UpdateData() {
+                const newID = parseInt(editID.textContent);
+                const newFirstName = editFirstName.value;
+                const newLastName = editLastName.value;
+                const newEmail = editEmail.value;
+                const newClass = editClass.value;
+                const classTeacherValue = editClassTeacher.value; // Get the class teacher value
+                const previousClass = queryParams.get("className");
+                const previousID = queryParams.get("id");
+
+                // Check if class name is changed
+                if (previousClass !== newClass) {
+                    // Remove the teacher from the previous class's class teacher
+                    if (previousClass !== "" && classTeacherValue === "Yes") {
+                        remove(ref(db, "ClassRoom/" + previousClass + "/ClassTeacher/" + previousID));
+                    }
+                }
+
+                // Check if class teacher value is "Yes" and a class is selected
+                if (classTeacherValue === "Yes" && newClass !== "") {
+                    // Check if the teacher is already assigned to the new class
+                    const classTeacherRef = ref(db, "ClassRoom/" + newClass + "/ClassTeacher");
+                    get(classTeacherRef).then((snapshot) => {
+                        if (snapshot.exists()) {
+                            // Teacher is already assigned to the new class
+                            alert("Teacher is already assigned to this class. Please select another class.");
+                        } else {
+                            // Teacher is not assigned to the new class, proceed with updates
+                            // Update the class name in TeacherData table
+                            set(ref(db, "TeacherData/" + newID + "/class"), newClass);
+
+                            // Update other teacher data
+                            set(ref(db, "TeacherData/" + newID), {
+                                firstname: newFirstName,
+                                lastname: newLastName,
+                                ID: newID,
+                                Email: newEmail,
+                                classTeacher: classTeacherValue,
+                                class: newClass,
+                            });
+
+                            set(ref(db, "allowed-card-ids/" + newID), "allowed")
+                                .then(() => {
+                                    alert("Data added successfully");
+                                    // Redirect to studentRecord.html after successful update
+                                    redirectToTeacherRecord();
+                                })
+                                .catch((error) => {
+                                    alert(error);
+                                });
+
+                            // Add the teacher to the new class as class teacher
+                            set(ref(db, "ClassRoom/" + newClass + "/ClassTeacher/" + newID), {
+                                ID: newID,
+                                firstName: newFirstName,
+                                lastName: newLastName,
+
+
+                            });
+                        }
+                    });
+                } else {
+                    // Check if the class teacher status is changed from "Yes" to "No" and there is a class selected
+                    if (previousClass !== "" && queryParams.get("classTeacher") === "Yes" && classTeacherValue === "No") {
+                        // Remove the teacher from the previous class's class teacher
+                        remove(ref(db, "ClassRoom/" + previousClass + "/ClassTeacher/" + previousID))
+                            .then(() => {
+                                // Update the record as "No" in TeacherData table
+                                return set(ref(db, "TeacherData/" + previousID + "/classTeacher"), "No");
+                            })
+                            .then(() => {
+                                alert("Teacher removed from class teacher");
+                                toggleRemoveSection();
+
+                                // Remove the "Class Name" input field
+                                editClass.style.display = "none";
+                                editClass.value = ""; // Clear the field value
+                            })
+                            .catch((error) => {
+                                console.error("Error removing teacher:", error);
+                            });
+                    }
+
+                    // Update TeacherData and allowed-card-ids as usual
+                    set(ref(db, "TeacherData/" + newID), {
+                        firstname: newFirstName,
+                        lastname: newLastName,
+                        ID: newID,
+                        Email: newEmail,
+                        classTeacher: classTeacherValue,
+                        class: newClass,
+                    });
+
+                    set(ref(db, "allowed-card-ids/" + newID), "allowed")
+                        .then(() => {
+                            alert("Data added successfully");
+                            // Redirect to studentRecord.html after successful update
+                            redirectToTeacherRecord();
+                        })
+                        .catch((error) => {
+                            alert(error);
+                        });
+                }
+            }
+            updateBtn.addEventListener("click", UpdateData);
+
+        });
+
+
+    </script>
+</body>
+
+</html>

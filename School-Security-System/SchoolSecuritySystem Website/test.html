@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Update Example</title>
+    <!-- Add Firebase SDK script -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js"></script>
+</head>
+<body>
+
+    <h1>Firebase Update Example</h1>
+
+    <label for="previousId">Previous ID:</label>
+    <input type="text" id="previousId" placeholder="Enter previous ID">
+
+    <label for="newId">New ID:</label>
+    <input type="text" id="newId" placeholder="Enter new ID">
+
+    <button onclick="updateId()">Update</button>
+
+    <script>
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+        // Your Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDCXvbE44rMmYlkSLMIsramC6tiBcLBNH4",
+            authDomain: "schoolsecuritysystemusin-4c8fa.firebaseapp.com",
+            databaseURL: "https://schoolsecuritysystemusin-4c8fa-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "schoolsecuritysystemusin-4c8fa",
+            storageBucket: "schoolsecuritysystemusin-4c8fa.appspot.com",
+            messagingSenderId: "58102931592",
+            appId: "1:58102931592:web:8b2a5aee4664b3df023f3d",
+            measurementId: "G-KTK6CHM7EF"
+        };
+      
+        // Initialize Firebase
+        import { getAuth, signInWithEmailAndPassword, deleteUser as deleteUserAccount, updateEmail, updatePassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+        const db = getDatabase();
+
+        function updateId() {
+            // Get the values from the input fields
+            var previousId = document.getElementById('previousId').value;
+            var newId = document.getElementById('newId').value;
+
+            // Reference to your Firebase database
+            var database = firebase.database();
+
+            // Reference to the TeacherData node
+            var teacherDataRef = database.ref('TeacherData/' + previousId);
+
+            // Check if the previous ID exists
+            teacherDataRef.once('value', function(snapshot) {
+                if (snapshot.exists()) {
+                    // Update the ID in TeacherData
+                    teacherDataRef.child('ID').set(newId);
+
+                    // Optional: You can update the email as well if needed
+               
+
+                    alert('ID in TeacherData updated successfully!');
+                } else {
+                    alert('Previous ID in TeacherData does not exist!');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

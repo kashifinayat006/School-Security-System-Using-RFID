@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "58102931592",
+    "firebase_url": "https://schoolsecuritysystemusin-4c8fa-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "schoolsecuritysystemusin-4c8fa",
+    "storage_bucket": "schoolsecuritysystemusin-4c8fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58102931592:android:dac4f44c04a4da06023f3d",
+        "android_client_info": {
+          "package_name": "com.sssproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByDLvFychHJUd59DUFwkZN9rTp8jxXUQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

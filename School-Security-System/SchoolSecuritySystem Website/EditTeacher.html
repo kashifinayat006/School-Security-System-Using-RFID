@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="editstudent.css">
+    <link rel="stylesheet" href="editteacher.css">
+    <script src="https://cdn.jsdelivr.net/npm/spin.js@2.3.2/spin.min.js"></script>
+    <link rel="stylesheet" href="phpcode/styles2.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div class="tick" id="tick">
+        <div class="tick-mark">&#10004;</div>
+        <p style="display: contents;" class="success-message">Card Scanned Successfully</p>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="popup">
+        <button class="close-button" id="closePopup">&times;</button>
+        <div class="card">
+            <div class="scan-line"></div>
+            <div class="card-details">
+                <h1>Card Scanning</h1>
+                <p style="display: contents;">Place your card on the scanner</p>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- //Email POP DIV -->
+    <div id="email-popup">
+
+        <button id="close-email-button"><i class='fa fa-close' style='color: red'></i></button>
+        <h2>Enter New Email</h2>
+        <input type="email" id="email-input" placeholder="New email" value="" />
+        <p id="email-error" style="color: red;"></p>
+        <button id="submit-email-button">Submit</button>
+
+    </div>
+
+    <!-- Password POPUP DIv -->
+    <div id="password-popup">
+
+        <button id="close-password-button"><i class='fa fa-close' style='color: red'></i></button>
+        <h2>Enter New Password</h2>
+        <input type="password" id="password-input" placeholder="New Password" value="" />
+        <p id="password-error" style="color: red;"></p>
+        <button id="submit-password-button">Submit</button>
+    </div>
+    <script src="validationEditPage.js"> </script>
+    <!-- ////////////////// -->
+    <div class="form-container">
+        <div class="form-group"  style="display: none;">
+            <div class="previousID">
+            <label for="enterID" style="color: white;">Previous ID</label>
+        </div>
+            <p id="enterID" style="
+            border-radius: 10px;
+            font-size: 16px;
+            background: linear-gradient(to right, #ff9900, #ff5722);
+            color: white;
+            text-align: center;
+            width: 500px;
+            height: 27px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -5px;
+            border: 2px solid #ff5722;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);">--</p>
+            <button id="openPopup" class="openPopup">Change ID <span class="fa fa-pencil"></span></button>
+        </div>
+
+        <div class="form-group">
+            <label for="updateFirstName">
+                Previous First Name:
+                <div class="label-with-icon tooltip">
+                    <span class="fa fa-info-circle"></span>
+                    <span class="tooltiptext">Enter new first name to update</span>
+                </div>
+            </label>
+            <input id="updateFirstName" type="text" oninput="validateInput('updateFirstName')">
+            <p id="updateFirstName-error" style="color: red;"></p>
+        </div>
+
+
+        <div class="form-group">
+            <label for="updateLastName">Previous Last Name:
+                <div class="label-with-icon tooltip">
+                    <span class="fa fa-info-circle"></span>
+                    <span class="tooltiptext">Enter new Last name to update</span>
+                </div>
+            </label>
+            <input id="updateLastName" type="text"  oninput="validateInput('updateLastName')">
+            <p id="updateLastName-error" style="color: red;"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="updateEmail">Previous Email
+                <div class="label-with-icon tooltip">
+                    <span class="fa fa-info-circle"></span>
+                    <span class="tooltiptext">Enter new Email e.g. example@example.com</span>
+                </div>
+            </label>
+            <input style="width: 70%;" id="updateEmail" type="text" disabled oninput="validateInput('updateEmail')"/>
+            <button class="openPopup" id="emailPOP" class="openPOP">change <span class="fa fa-pencil"></span></button>
+            <p id="updateEmail-error" style="color: red;"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="updatePassword">Previous Password
+                <div class="label-with-icon tooltip">
+                    <span class="fa fa-info-circle"></span>
+                    <span class="tooltiptext">Enter new a password atleast 6 characters/digits</span>
+                </div>
+            </label>
+            <input style="width: 70%;" id="updatePassword" type="text" disabled>
+            <button class="openPopup" id="passwordPOP">change <span class="fa fa-pencil"></span></button>
+        </div>
+
+        <div class="form-group">
+            <label for="updateClassTeacher" style="display: none;">Class Teacher: 
+                <div class="label-with-icon tooltip">
+                    <span class="fa fa-info-circle"></span>
+                    <span class="tooltiptext">Read only.</span>
+                </div>
+            </label>
+            <input id="updateClassTeacher" type="text" style="display: none;" readonly>
+            <button id="makeClassTeacherBtn" class="class-teacher-button">Change Class<span
+                    class="fa fa-user-plus"></span></button>
+            <select id="selectClassDropdown" style="display: none;" >
+                <option value="">Select Class</option>
+                <option value="1">Class 1</option>
+                <option value="2">Class 2</option>
+                <option value="3">Class 3</option>
+                <option value="4">Class 4</option>
+                <option value="5">Class 5</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+            </select>
+            <button id="deselectClassBtn" style="display: none;">Deselect</button>
+        </div>
+        <div class="form-group" id="classLabelAndField" >
+            <label for="updateClassName">Previous Class Name:
+                <div class="label-with-icon tooltip">
+                    <span class="fa fa-info-circle"></span>
+                    <span class="tooltiptext">Read only </span>
+                </div>
+            </label>
+            <input id="updateClassName" type="text" readonly>
+        </div>
+        <div id="removeTeacherSection" style="display: none;">
+            <p>Want to remove this teacher from class teacher?</p>
+            <button id="removeClassTeacher" class="remove-button">Remove <i class="fa fa-remove"></i></button>
+        </div>
+        <br>
+        <button id="update" class="update-button">UPDATE</button>
+    </div>
+
+
+    <script type="module" src="phpcode/script2.js"> </script>
+    <script type="module" src="./changeEmailOrPassword.js"></script>
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCXvbE44rMmYlkSLMIsramC6tiBcLBNH4",
+            authDomain: "schoolsecuritysystemusin-4c8fa.firebaseapp.com",
+            databaseURL: "https://schoolsecuritysystemusin-4c8fa-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "schoolsecuritysystemusin-4c8fa",
+            storageBucket: "schoolsecuritysystemusin-4c8fa.appspot.com",
+            messagingSenderId: "58102931592",
+            appId: "1:58102931592:web:8b2a5aee4664b3df023f3d",
+            measurementId: "G-KTK6CHM7EF"
+        };
+        import { getAuth, signInWithEmailAndPassword, deleteUser as deleteUserAccount, updateEmail, updatePassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+        const db = getDatabase();
+        const updateBtn = document.querySelector("#update");
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const queryParams = new URLSearchParams(window.location.search);
+
+            const editID = document.getElementById("enterID");
+            const editFirstName = document.getElementById("updateFirstName");
+            const editLastName = document.getElementById("updateLastName");
+            const editEmail = document.getElementById("updateEmail");
+            const editPassword = document.getElementById("updatePassword");
+            const editClass = document.getElementById("updateClassName");
+            const editClassTeacher = document.getElementById("updateClassTeacher");
+            const removeTeacherSection = document.getElementById("removeTeacherSection");
+            const removeClassTeacherBtn = document.getElementById("removeClassTeacher");
+            const classLabelAndField = document.getElementById("classLabelAndField");
+            const makeClassTeacherBtn = document.getElementById("makeClassTeacherBtn");
+            const selectClassDropdown = document.getElementById("selectClassDropdown");
+
+            editID.innerHTML = queryParams.get("id");
+            editFirstName.value = queryParams.get("firstName");
+            editLastName.value = queryParams.get("lastName");
+            editEmail.value = queryParams.get("email");
+            editPassword.value = queryParams.get("password");
+            editClass.value = queryParams.get("className");
+            editClassTeacher.value = queryParams.get("classTeacher");
+            const pass = queryParams.get("password");
+
+            editClassTeacher.readOnly = true;
+            function toggleRemoveSection() {
+                if (editClassTeacher.value === "yes") {
+                    // removeTeacherSection.style.display = "block";
+                    classLabelAndField.style.display = "block";
+                    makeClassTeacherBtn.style.display = "block";
+                } else {
+                    removeTeacherSection.style.display = "none";
+                    classLabelAndField.style.display = "block";
+                    makeClassTeacherBtn.style.display = "block";
+                }
+            }
+
+            toggleRemoveSection();
+
+            function toggleDeselectButton() {
+                const selectedClass = selectClassDropdown.value;
+                const classTeacherValue = editClassTeacher.value;
+
+                if (selectedClass && classTeacherValue === "yes") {
+                    deselectClassBtn.style.display = "block";
+                } else {
+                    deselectClassBtn.style.display = "none";
+                }
+            }
+
+            removeClassTeacherBtn.addEventListener("click", () => {
+                const confirmRemove = confirm("Are you sure you want to remove this teacher from class teacher?");
+                if (confirmRemove) {
+                    const newID = parseInt(editID.textContent);
+                    const previousID = queryParams.get("id");
+                    const newClass = editClass.value;
+                    const previousClass = queryParams.get("className");
+                    const isClassTeacher = editClassTeacher.value === "yes";
+
+                    if (isClassTeacher) {
+
+                        remove(ref(db, "ClassRoom/" + newClass + "/ClassTeacher/" + previousID))
+                            .then(() => {
+
+                                editClass.value = "";
+                                editClassTeacher.value = "no";
+                                toggleRemoveSection();
+                                editClass.style.display = "none";
+                            })
+                            .catch((error) => {
+                                console.error("Error removing teacher:", error);
+                            });
+                    }
+                    else {
+                        alert("This teacher is not currently a class teacher.");
+                        toggleRemoveSection();
+                    }
+                }
+            });
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            selectClassDropdown.addEventListener("change", toggleDeselectButton);
+
+            const deselectClassBtn = document.getElementById("deselectClassBtn");
+
+
+            deselectClassBtn.addEventListener("click", () => {
+                const teacherID = queryParams.get("id");
+                const selectedClass = selectClassDropdown.value;
+
+                if (selectedClass) {
+                    const confirmDeselect = confirm("Are you sure you want deselect");
+                    if (confirmDeselect) {
+                        // editClass.value = "";
+                        // editClassTeacher.value = "no";
+                        // selectClassDropdown.value = "";
+                        selectClassDropdown.style.display = "none";
+                        deselectClassBtn.style.display = "none";
+                        makeClassTeacherBtn.style.display = "block";
+
+                    }
+                }
+            });
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            makeClassTeacherBtn.addEventListener("click", () => {
+                selectClassDropdown.style.display = "block";
+                makeClassTeacherBtn.style.display = "none";
+                editClassTeacher.value = "yes";
+                selectClassDropdown.addEventListener("change", () => {
+                    const selectedClass = selectClassDropdown.value;
+                    const teacherID = queryParams.get("id");
+                    editClass.value = selectedClass;
+                });
+            });
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////
+            function UpdateData() {
+                const newID = parseInt(editID.textContent);
+                const newFirstName = editFirstName.value;
+                const newLastName = editLastName.value;
+                const newEmail = editEmail.value;
+                const newPassword = editPassword.value;
+                const newClass = editClass.value;
+                const classTeacherValue = editClassTeacher.value;
+                const previousClass = queryParams.get("className");
+                const previousID = queryParams.get("id");
+                const password = queryParams.get('password');
+                const uid = queryParams.get('uid');
+                const previousEmail = queryParams.get('email');
+                const previousPassword = queryParams.get('password');
+
+                if (previousEmail != newEmail) {
+                    ChangeEmail(previousEmail, previousPassword, newEmail)
+
+                }
+                if (previousPassword != newPassword) {
+                    ChangePassword(previousEmail, previousPassword, newPassword)
+
+                }
+                if (previousEmail != newEmail && previousPassword != newPassword) {
+                    changeEmailAndPassword(previousEmail, previousPassword, newEmail, newPassword)
+                }
+
+                if (previousClass !== newClass) {
+                    remove(ref(db, "ClassRoom/" + previousClass + "/ClassTeacher/" + previousID));
+                }
+                if (newClass == previousClass) 
+                
+                {
+
+                    if (newClass != "") {
+                        set(ref(db, "TeacherData/" + newID + "/class"), newClass);
+                        set(ref(db, "TeacherData/" + newID), {
+                            firstname: newFirstName,
+                            lastname: newLastName,
+                            ID: newID,
+                            Email: newEmail,
+                            password: newPassword,
+                            classTeacher: classTeacherValue,
+                            class: newClass,
+                            uid: uid,
+
+                        });
+
+                        set(ref(db, "allowed-card-ids/" + newID), "allowed")
+                            .then(() => {
+                                alert("Data added successfully");
+                                redirectToTeacherRecord();
+                            })
+                            .catch((error) => {
+                                alert(error);
+                            });
+                        set(ref(db, "ClassRoom/" + newClass + "/ClassTeacher/" + newID), {
+                            ID: newID,
+                            firstName: newFirstName,
+                            lastName: newLastName,
+
+
+                        });
+
+                    }
+                    else {
+
+                        set(ref(db, "TeacherData/" + newID + "/class"), newClass);
+                        set(ref(db, "TeacherData/" + newID), {
+                            firstname: newFirstName,
+                            lastname: newLastName,
+                            ID: newID,
+                            Email: newEmail,
+                            classTeacher: 'no',
+                            class: newClass,
+                            password: newPassword,
+                            uid: uid,
+
+                        });
+
+                        set(ref(db, "allowed-card-ids/" + newID), "allowed")
+                            .then(() => {
+                                alert("Data added successfully");
+                                redirectToTeacherRecord();
+                            })
+                            .catch((error) => {
+                                alert(error);
+                            });
+
+                    }
+                }
+                    else {
+
+                       if (classTeacherValue === "yes" && newClass !== "") {
+                        // Check if the teacher is already assigned to the new class
+                        const classTeacherRef = ref(db, "ClassRoom/" + newClass + "/ClassTeacher");
+                        get(classTeacherRef).then((snapshot) => {
+                            if (snapshot.exists()) {
+                                // Teacher is already assigned to the new class
+                                alert("Teacher is already assigned to this class. Please select another class.");
+                            } else {
+                                // Teacher is not assigned to the new class, 
+                                // Update the class name in TeacherData table
+                                set(ref(db, "TeacherData/" + newID + "/class"), newClass);
+
+                                // Update other teacher data
+                                set(ref(db, "TeacherData/" + newID), {
+                                    firstname: newFirstName,
+                                    lastname: newLastName,
+                                    ID: newID,
+                                    Email: newEmail,
+                                    classTeacher: classTeacherValue,
+                                    class: newClass,
+                                    password: newPassword,
+                                    uid: uid,
+
+                                });
+
+                                set(ref(db, "allowed-card-ids/" + newID), "allowed")
+                                    .then(() => {
+                                        alert("Data added successfully");
+                                        redirectToTeacherRecord();
+                                    })
+                                    .catch((error) => {
+                                        alert(error);
+                                    });
+
+                                set(ref(db, "ClassRoom/" + newClass + "/ClassTeacher/" + newID), {
+                                    ID: newID,
+                                    firstName: newFirstName,
+                                    lastName: newLastName,
+
+
+                                });
+                            }
+                        });
+                    } else {
+
+                        if (previousClass !== "" && queryParams.get("classTeacher") === "yes" && classTeacherValue === "no") {
+
+                            remove(ref(db, "ClassRoom/" + previousClass + "/ClassTeacher/" + previousID))
+                                .then(() => {
+
+                                    return set(ref(db, "TeacherData/" + newID + "/classTeacher"), "no");
+                                })
+                                .then(() => {
+                                    alert("Teacher removed from class teacher");
+                                    toggleRemoveSection();
+
+
+                                    editClass.style.display = "none";
+                                    editClass.value = "";
+                                })
+                                .catch((error) => {
+                                    console.error("Error removing teacher:", error);
+                                });
+                        }
+
+
+                        set(ref(db, "TeacherData/" + newID), {
+                            firstname: newFirstName,
+                            lastname: newLastName,
+                            ID: newID,
+                            Email: newEmail,
+                            classTeacher: classTeacherValue,
+                            class: newClass,
+                            password: newPassword,
+                            uid: uid,
+                        });
+
+                        set(ref(db, "allowed-card-ids/" + newID), "allowed")
+                            .then(() => {
+                                alert("Data added successfully");
+                                redirectToTeacherRecord();
+                            })
+                            .catch((error) => {
+                                alert(error);
+                            });
+                    }
+                }
+
+                if (previousID != newID) {
+
+                    remove(ref(db, "ClassRoom/" + previousClass + "/ClassTeacher/" + previousID))
+                    remove(ref(db, "allowed-card-ids/" + previousID))
+                    remove(ref(db, "TeacherData/" + previousID))
+                }
+
+
+            }
+            function ChangeEmail(oldEmail, oldPassword, newEmail) {
+                const email = oldEmail;
+                const password = oldPassword;
+
+                signInWithEmailAndPassword(getAuth(), email, password)
+                    .then((userCredential) => {
+
+                        console.log("Sign In Successful!");
+                        const user = getAuth().currentUser;
+
+                        updateEmail(user, newEmail).then(() => {
+
+                            console.log("Email Change Successfully");
+
+                        }).catch((error) => {
+
+                        });
+
+                    })
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.error("Sign In Error:", errorCode, errorMessage);
+                    });
+            }
+
+            function ChangePassword(oldEmail, oldPassword, newPassword) {
+
+                const email = oldEmail;
+                const password = oldPassword;
+                signInWithEmailAndPassword(getAuth(), email, password)
+                    .then((userCredential) => {
+                        console.log("Sign In Successful!");
+                        const user = getAuth().currentUser;
+
+                        updatePassword(user, newPassword).then(() => {
+                            console.log("Password Change Successfully");
+                        }).catch((error) => {
+
+
+                        });
+                    })
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.error("Sign In Error:", errorCode, errorMessage);
+                    });
+            }
+
+            function changeEmailAndPassword(oldEmail, oldPassword, newEmail, newPassword) {
+                const email = oldEmail;
+                const password = oldPassword;
+                signInWithEmailAndPassword(getAuth(), email, password)
+                    .then((userCredential) => {
+
+                        console.log("Sign In Successful!");
+                        const user = getAuth().currentUser;
+
+                        updateEmail(user, newEmail).then(() => {
+
+                            console.log("Email Change Successfully");
+                            updatePassword(user, newPassword).then(() => {
+                                console.log("Password Change Successfully");
+                            }).catch((error) => {
+
+
+                            });
+
+                        }).catch((error) => {
+
+                        });
+
+                    })
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.error("Sign In Error:", errorCode, errorMessage);
+                    });
+            }
+            function redirectToTeacherRecord() {
+                window.location.href = "teacherrecord.html";
+            }
+
+            updateBtn.addEventListener("click", UpdateData);
+
+        });
+
+    </script>
+</body>
+
+</html>
